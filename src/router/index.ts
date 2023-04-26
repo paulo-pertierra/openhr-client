@@ -15,28 +15,51 @@ const router = createRouter({
     {
       path: "/auth",
       name: "auth",
+      redirect: () => {
+        return "/auth/login"
+      },
       component: () => import("../views/AuthView.vue"),
       children: [
         {
           path: "login",
-          component: import("../components/Auth/LoginPage.vue")
-        }
-      ]
-    },
-    {
-      path: "/auth",
-      name: "auth",
-      component: () => import("../views/AuthView.vue"),
-      children: [
-        {
-          path: "login",
-          component: import("../components/Auth/LoginPage.vue")
+          component: () => import("../components/Auth/LoginPage.vue")
         },
         {
           path: "signup",
-          component: import("../components/Auth/SignupPage.vue")
+          component: () => import("../components/Auth/SignupPage.vue")
         }
-      ]
+      ],
+      beforeEnter: (to, from)=> {
+        const localstore = localStorage.getItem("user") 
+        if (localstore) {
+          const data = JSON.parse(localstore || "{}")
+          return `/${data.role.toLowerCase()}`
+        }
+      }
+    },
+    {
+      path: "/admin",
+      component: () => import("../views/AdminView.vue"),
+      beforeEnter: async (to, from) => {
+        const localstore = localStorage.getItem("user");
+        if (localstore) {
+          const data = JSON.parse(localstore || "{}");
+          return data.role === "ADMIN" ? true : '/auth/login'
+        }
+        return  '/auth/login'
+      }
+    },
+    {
+      path: "/user",
+      component: () => import("../views/UserView.vue"),
+      beforeEnter: async (to, from) => {
+        const localstore = localStorage.getItem("user");
+        if (localstore) {
+          const data = JSON.parse(localstore || "{}");
+          return data.role === "EMPLOYEE" || data.role === "INTERN" ? true : '/auth/login'
+        }
+        return  '/auth/login'
+      }
     }
   ]
 });
