@@ -3,6 +3,14 @@ import axios from "axios";
 import { ref } from "vue";
 import AttendanceTableHead from "./AttendanceTable/AttendanceTableHead.vue";
 import AttendanceTableEntry from "./AttendanceTable/AttendanceTableEntry.vue";
+import { initFlowbite } from "flowbite";
+import { onMounted } from "vue";
+
+// initialize components based on data attribute selectors
+onMounted(() => {
+  initFlowbite();
+});
+
 const user = defineProps(["userId"]);
 
 const attendances = ref([]);

@@ -28,12 +28,12 @@ function validatePayload() {
 }
 
 const userStore = useUserStore();
-async function loginUser() {
-  await axios
+function loginUser() {
+  axios
     .post("/auth/login", payload)
     .then(async (res) => {
       Swal.fire("Success!", "Logged in, redirecting...", "success");
-      await userStore.setUser(res.data.data);
+      userStore.setUser(res.data.data);
       const role: string = res.data.data.role.toLowerCase();
       if (role === "admin") {
         router.push("/admin");
@@ -47,7 +47,7 @@ async function loginUser() {
     })
     .catch((error) => {
       console.log(error);
-      Swal.fire("Error", `Invalid username or password`, "error");
+      Swal.fire("Error", `Invalid username or password${error.message}`, "error");
     });
 }
 </script>

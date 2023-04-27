@@ -1,6 +1,14 @@
 <script lang="ts" setup>
+import { ref } from "vue";
 import AttendancesTableHead from './AttendancesPage/AttendancesTableHead.vue';
 import AttendancesTableEntry from './AttendancesPage/AttendancesTableEntry.vue';
+import axios from 'axios';
+
+const attendances = ref([])
+axios.get("/time")
+  .then((res)=> {
+    attendances.value = res.data
+  })
 </script>
 <template>
   <p class="text-gray-700 text-3xl text-center my-5 font-extrabold">Attendances</p>
@@ -29,7 +37,7 @@ import AttendancesTableEntry from './AttendancesPage/AttendancesTableEntry.vue';
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
       <AttendancesTableHead />
       <tbody>
-        <AttendancesTableEntry />
+        <AttendancesTableEntry v-for="attendance, index in attendances" :key="index" :attendance="attendance"/>
       </tbody>
     </table>
   </div>

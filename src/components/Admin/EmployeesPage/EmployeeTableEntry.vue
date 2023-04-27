@@ -3,9 +3,7 @@ import axios from "axios";
 import { initFlowbite } from "flowbite";
 import { onMounted } from "vue";
 import ViewEmployeeAttendance from "./Modals/ViewEmployeeAttendance.vue";
-onMounted(() => {
-  initFlowbite();
-});
+
 const props = defineProps(["info"]);
 </script>
 <template>
@@ -13,12 +11,14 @@ const props = defineProps(["info"]);
     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
   >
     <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-      {{ props.info.profile.lastName }}
+      <RouterLink :to="'/admin/employees/' + props.info.id" >
+        {{ props.info.profile.lastName }} 
+        {{ props.info.profile.firstName }} 
+        {{ props.info.profile.middleName.charAt(0) }}.
+        {{ props.info.profile.suffix }}
+      </RouterLink>
     </th>
-    <td class="px-6 py-4">{{ props.info.profile.firstName }}</td>
-    <td class="px-6 py-4">{{ props.info.profile.middleName }}</td>
-    <td class="px-6 py-4">{{ props.info.profile.department }}</td>
-    <td class="px-6 py-4">{{ props.info.profile.employmentType }}</td>
+    <td class="px-6 py-4">{{ props.info.profile.department }} | {{ props.info.profile.employmentType }}</td>
     <td class="px-6 py-4">{{ props.info.profile.contactNumber }}</td>
     <td class="px-6 py-4">{{ props.info.profile.contactEmail }}</td>
     <td class="px-6 py-4">
@@ -30,14 +30,6 @@ const props = defineProps(["info"]);
       >
         View
       </button>
-      <!-- <button
-        data-modal-target="modalViewEmployee"
-        data-modal-toggle="modalViewEmployee"
-        class="inline mx-1 text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-3 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        type="button"
-      >
-        Update
-      </button> -->
     </td>
   </tr>
 

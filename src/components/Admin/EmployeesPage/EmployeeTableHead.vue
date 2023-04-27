@@ -1,10 +1,7 @@
 <script lang="ts" setup>
 const tableHeads = [
-  "Last Name",
-  "First Name",
-  "Middle Name",
+  "Name",
   "Department",
-  "Employment Type",
   "Phone",
   "Email",
   "Attendance"

@@ -37,6 +37,9 @@ const router = createRouter({
           path: "/auth"
         };
       }
+    },{
+      path: "/huh",
+      component: () => import("../views/DELETEDesignView.vue")
     },
     {
       path: "/auth",
@@ -72,6 +75,10 @@ const router = createRouter({
         {
           path: "employees",
           component: () => import("../components/Admin/EmployeesPage.vue")
+        },
+        {
+          path: "employees/:id",
+          component: () => import("../components/Admin/EmployeeProfile.vue")
         }
       ],
       beforeEnter: identifyAdmin
