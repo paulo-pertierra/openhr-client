@@ -5,13 +5,13 @@ import router from "./router";
 
 // Pinia Defaults
 import { createPinia } from "pinia";
-import piniaPersist from "pinia-plugin-persistedstate"
+import piniaPersist from "pinia-plugin-persistedstate";
 
 // Axios Defaults
 import axios from "axios";
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 try {
-  axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("user")}`
+  axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem("user")}`;
 } catch {
   Swal.fire("Expired User", "Your session has expired. Log in again.", "warning");
 }
