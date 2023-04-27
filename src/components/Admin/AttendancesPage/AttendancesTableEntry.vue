@@ -13,7 +13,7 @@ const late = ref(false)
     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
       {{ props.attendance.user.profile.lastName }}
       {{ props.attendance.user.profile.firstName }}
-      {{ props.attendance.user.profile.middleName.charAt(0) }}.{{ "," + " Jr" }}
+      {{ props.attendance.user.profile.middleName.charAt(0) }}.{{ props.attendance.user.profile.suffix }}
     </th>
     <td class="px-6 py-4">
       {{ props.attendance.user.profile.department }} | {{ props.attendance.user.profile.employmentType }}
