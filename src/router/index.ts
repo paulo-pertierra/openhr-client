@@ -23,7 +23,8 @@ const userLoggedOut = async () => {
   const localstore = localStorage.getItem("user");
   if (localstore) {
     const data = JSON.parse(localstore || "{}");
-    return `/${data.role.toLowerCase()}`;
+    const role: string = data.role
+    return `/${role.toLowerCase()}`;
   }
 };
 const router = createRouter({
