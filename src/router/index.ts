@@ -27,6 +27,7 @@ const userLoggedOut = async () => {
     return `/${role.toLowerCase()}`;
   }
 };
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -80,6 +81,9 @@ const router = createRouter({
         {
           path: "employees/:id",
           component: () => import("../components/Admin/EmployeeProfile.vue")
+        }, {
+          path: "requests",
+          component: () => import("../components/Admin/RequestsPage.vue")
         }
       ],
       beforeEnter: identifyAdmin
