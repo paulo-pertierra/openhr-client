@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from "vue-router";
-import _ from "underscore";
 
 const identifyAdmin = async () => {
   const localstore = localStorage.getItem("user");
