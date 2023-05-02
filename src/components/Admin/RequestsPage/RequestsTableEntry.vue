@@ -12,8 +12,8 @@ const props = defineProps(["transaction"]);
       {{ props.transaction.user.profile.suffix }}
     </th>
     <td class="px-6 py-4">
-      <span class=" text-xs">{{ moment(props.transaction.createdAt).calendar() }}</span> <br>
-      <span class="font-bold">{{props.transaction.transactionType}}</span>
+      <span class="text-xs">{{ moment(props.transaction.createdAt).calendar() }}</span> <br>
+      <span class="font-bold">{{ props.transaction.transactionType }}</span>
     </td>
     <td class="px-6 py-4 overflow-auto">
       {{ props.transaction.description }}
