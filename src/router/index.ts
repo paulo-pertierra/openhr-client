@@ -22,7 +22,7 @@ const userLoggedOut = async () => {
   const localstore = localStorage.getItem("user");
   if (localstore) {
     const data = JSON.parse(localstore || "{}");
-    const role: string = data.role
+    const role: string = data.role;
     return `/${role.toLowerCase()}`;
   }
 };
@@ -38,7 +38,8 @@ const router = createRouter({
           path: "/auth"
         };
       }
-    },{
+    },
+    {
       path: "/huh",
       component: () => import("../views/DELETEDesignView.vue")
     },
@@ -63,6 +64,7 @@ const router = createRouter({
     },
     {
       path: "/admin",
+      redirect: () => "/admin/dashboard",
       component: () => import("../views/AdminView.vue"),
       children: [
         {
@@ -79,10 +81,15 @@ const router = createRouter({
         },
         {
           path: "employees/:id",
-          component: () => import("../components/Admin/EmployeeProfile.vue")
-        }, {
+          component: () => import("../components/Admin/EmployeeProfilePage.vue")
+        },
+        {
           path: "requests",
           component: () => import("../components/Admin/RequestsPage.vue")
+        },
+        {
+          path: "profile",
+          component: () => import("../components/Admin/MyProfilePage.vue")
         }
       ],
       beforeEnter: identifyAdmin

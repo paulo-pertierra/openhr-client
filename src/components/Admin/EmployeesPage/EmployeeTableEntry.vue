@@ -11,14 +11,16 @@ const props = defineProps(["info"]);
     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
   >
     <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-      <RouterLink :to="'/admin/employees/' + props.info.id" >
-        {{ props.info.profile.lastName }} 
-        {{ props.info.profile.firstName }} 
+      <RouterLink :to="'/admin/employees/' + props.info.id">
+        {{ props.info.profile.lastName }}
+        {{ props.info.profile.firstName }}
         {{ props.info.profile.middleName.charAt(0) }}.
         {{ props.info.profile.suffix }}
       </RouterLink>
     </th>
-    <td class="px-6 py-4">{{ props.info.profile.department }} | {{ props.info.profile.employmentType }}</td>
+    <td class="px-6 py-4">
+      {{ props.info.profile.department }} | {{ props.info.profile.employmentType }}
+    </td>
     <td class="px-6 py-4">{{ props.info.profile.contactNumber }}</td>
     <td class="px-6 py-4">{{ props.info.profile.contactEmail }}</td>
     <td class="px-6 py-4">

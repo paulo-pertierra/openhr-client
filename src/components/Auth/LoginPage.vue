@@ -35,7 +35,7 @@ function loginUser() {
       Swal.fire("Success!", "Logged in, redirecting...", "success");
       userStore.setUser(res.data.data);
       const roleObj: string = res.data.data.role;
-      const role =  roleObj.toLowerCase();
+      const role = roleObj.toLowerCase();
       if (role === "admin") {
         router.push("/admin");
         return;

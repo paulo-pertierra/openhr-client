@@ -14,7 +14,9 @@ const props = defineProps(["attendance"]);
     <td>
       <p class="mx-0.5 inline bg-emerald-600 w-10 text-white p-1.5 rounded-lg text-center">Early</p>
       <p class="mx-0.5 inline bg-orange-500 w-10 text-white p-1.5 rounded-lg text-center">Late</p>
-      <p class="mx-0.5 inline bg-slate-500 w-10 text-white p-1.5 rounded-lg text-center">Early Out</p>
+      <p class="mx-0.5 inline bg-slate-500 w-10 text-white p-1.5 rounded-lg text-center">
+        Early Out
+      </p>
       <p class="mx-0.5 inline bg-red-600 w-10 text-white p-1.5 rounded-lg text-center">Absent</p>
     </td>
   </tr>

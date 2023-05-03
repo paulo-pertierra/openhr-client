@@ -1,11 +1,5 @@
 <script lang="ts" setup>
-const tableHeads = [
-  "Name",
-  "Department",
-  "Phone",
-  "Email",
-  "Attendance"
-];
+const tableHeads = ["Name", "Department", "Phone", "Email", "Attendance"];
 </script>
 <template>
   <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
