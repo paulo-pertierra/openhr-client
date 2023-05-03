@@ -97,7 +97,21 @@ const router = createRouter({
     {
       path: "/user",
       component: () => import("../views/UserView.vue"),
-      beforeEnter: identifyUser
+      beforeEnter: identifyUser,
+      children: [
+        {
+          path: "dashboard",
+          component: () => import("../components/User/DashboardPage.vue")
+        },
+        {
+          path: "attendance",
+          component: () => import("../components/User/AttendancesPage.vue")
+        },
+        {
+          path: "requests",
+          component: () => import("../components/User/RequestsPage.vue")
+        }
+      ]
     }
   ]
 });
