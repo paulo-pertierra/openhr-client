@@ -1,8 +1,5 @@
 <template>
-  <div class="w-96 h-48 mt-10">
-    <p>Put this in a card so it looks cleaner</p>
     <Pie :data="data" :options="options" />
-  </div>
 </template>
 
 <script lang="ts" setup>

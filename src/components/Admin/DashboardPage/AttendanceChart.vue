@@ -1,5 +1,4 @@
 <template>
-  <p>Put this in a card so it looks cleaner</p>
   <Bar id="my-chart-id" :options="chartOptions" :data="chartData" />
 </template>
 
