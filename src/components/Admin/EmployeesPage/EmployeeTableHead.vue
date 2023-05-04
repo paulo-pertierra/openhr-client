@@ -2,7 +2,7 @@
 const tableHeads = ["Name", "Department", "Phone", "Email", "Attendance"];
 </script>
 <template>
-  <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+  <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky top-0">
     <tr>
       <th v-for="(tableHead, index) in tableHeads" :key="index" scope="col" class="px-6 py-3">
         {{ tableHead }}

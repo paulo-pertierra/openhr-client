@@ -4,10 +4,12 @@ import RequestsTableEntry from "./RequestsPage/RequestsTableEntry.vue";
 import axios from "axios";
 import { ref } from "vue";
 import Swal from "sweetalert2";
+import { useUserStore } from "@/stores/pinia";
+const user = useUserStore();
 
 const transactions = ref([]);
 axios
-  .get("/transactions?profile=true")
+  .get(`/transactions/${user.id}?profile=true`)
   .then((res) => {
     transactions.value = res.data;
   })

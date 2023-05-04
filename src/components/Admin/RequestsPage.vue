@@ -16,10 +16,10 @@ axios
   });
 </script>
 <template>
-  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg max-h-168">
+    <table class="w-full overflow-auto text-sm text-left text-gray-500 dark:text-gray-400">
       <RequestsTableHeader />
-      <tbody>
+      <tbody class="z-0">
         <RequestsTableEntry
           v-for="(transaction, index) in transactions"
           :key="index"

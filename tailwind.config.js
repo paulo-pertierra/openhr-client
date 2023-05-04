@@ -10,7 +10,17 @@ module.exports = {
       colors: {
         primary: '#3f3cbb',
         secondary: '#3f5bcc'
+      },
+      height: {
+        '128': '32rem',
+        '144': '36rem'
+      },
+      maxHeight: {
+        '128': '32rem',
+        '144': '36rem',
+        '168': '42rem'
       }
+      
     },
   },
   plugins: [
