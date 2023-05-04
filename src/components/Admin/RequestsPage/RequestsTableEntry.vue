@@ -27,6 +27,10 @@ function declineRequest() {
     Swal.fire("Error", "Could not complete your request.", "error")
   })
 }
+
+function pendingRequest() {
+  Swal.fire("Don't forget", "You'll have to add this functionality later", "warning")
+}
 </script>
 <template>
   <tr
