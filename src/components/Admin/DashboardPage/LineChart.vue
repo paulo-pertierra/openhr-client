@@ -6,24 +6,23 @@
 </template>
 
 <script lang="ts" setup>
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
-import { Pie } from 'vue-chartjs'
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { Pie } from "vue-chartjs";
 
-ChartJS.register(ArcElement, Tooltip, Legend)
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const data = {
-  labels: ['On Leave', 'Present', 'AWOL'],
+  labels: ["On Leave", "Present", "AWOL"],
   datasets: [
     {
-      backgroundColor: ['#E46651', '#00D8FF', '#DD1B16'],
+      backgroundColor: ["#E46651", "#00D8FF", "#DD1B16"],
       data: [20, 80, 10]
     }
   ]
-}
+};
 
 const options = {
   responsive: true,
   maintainAspectRatio: false
-}
-
+};
 </script>

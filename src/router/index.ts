@@ -84,6 +84,10 @@ const router = createRouter({
           component: () => import("../components/Admin/EmployeeProfilePage.vue")
         },
         {
+          path: "register",
+          component: () => import("../components/Admin/RegisterEmployeePage.vue")
+        },
+        {
           path: "requests",
           component: () => import("../components/Admin/RequestsPage.vue")
         },
@@ -112,6 +116,10 @@ const router = createRouter({
           component: () => import("../components/User/RequestsPage.vue")
         }
       ]
+    },
+    {
+      path: "/sandbox",
+      component: () => import("../components/SandBoxPage.vue")
     }
   ]
 });
