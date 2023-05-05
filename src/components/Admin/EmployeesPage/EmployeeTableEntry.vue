@@ -4,6 +4,12 @@ import { initFlowbite } from "flowbite";
 import { onMounted } from "vue";
 import ViewEmployeeAttendance from "./Modals/ViewEmployeeAttendance.vue";
 
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faEye, faUserPen } from "@fortawesome/free-solid-svg-icons";
+library.add(faEye, faUserPen)
+
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
 const props = defineProps(["info"]);
 </script>
 <template>
@@ -30,7 +36,15 @@ const props = defineProps(["info"]);
         class="mx-1 my-1 inline text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-3 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         type="button"
       >
-        View
+        <FontAwesomeIcon icon="fa-solid fa-eye" />
+      </button>
+      <button
+        :data-modal-target="props.info.id"
+        :data-modal-toggle="props.info.id"
+        class="mx-1 my-1 inline text-white bg-orange-500 hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-3 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        type="button"
+      >
+        <FontAwesomeIcon icon="fa-solid fa-user-pen" />
       </button>
     </td>
   </tr>

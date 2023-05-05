@@ -3,6 +3,13 @@ import moment from "moment";
 import axios from "axios";
 import Swal from "sweetalert2";
 import router from "@/router";
+
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faCircleXmark, faCircleCheck, faRotateLeft } from "@fortawesome/free-solid-svg-icons";
+library.add(faCircleXmark, faCircleCheck, faRotateLeft)
+
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
 moment.updateLocale(moment.locale(), { invalidDate: "No Date Specified" });
 const props = defineProps(["transaction"]);
 
@@ -34,6 +41,7 @@ function pendingRequest() {
   Swal.fire("Don't forget", "You'll have to add this functionality later", "warning");
 }
 </script>
+
 <template>
   <tr
     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
@@ -68,29 +76,26 @@ function pendingRequest() {
         >Declined</span
       >
     </td>
-    <td class="px-8 py-4 text-right">
+    <td class="pr-4 text-right">
       <div v-if="props.transaction.status === 'Pending'">
         <button
           @click="approveRequest()"
-          class="mx-1 my-1 font-medium text-slate-600 dark:text-blue-500 w-12 border-blue-500 border rounded-lg hover:bg-blue-500 hover:text-white"
         >
-          YES
+        <FontAwesomeIcon class="px-1 w-6 h-auto text-green-600 hover:text-green-800 transition-all duration-150 ease-in-out" icon="fa-solid fa-circle-check" />
         </button>
         <button
           @click="declineRequest()"
           href="#"
-          class="mx-1 my-1 font-medium text-slate-600 dark:text-red-500 w-12 border-red-500 border rounded-lg hover:bg-red-500 hover:text-white"
         >
-          NO
+        <FontAwesomeIcon class=" w-6 h-auto text-red-600 hover:text-red-800 transition-all duration-150 ease-in-out" icon="fa-solid fa-circle-xmark" />
         </button>
       </div>
       <div v-else>
         <button
           @click="pendingRequest()"
           href="#"
-          class="mx-1 my-1 font-medium text-slate-600 dark:text-red-500 w-12 border-red-500 border rounded-lg hover:bg-red-500 hover:text-white"
         >
-          RESET
+        <FontAwesomeIcon class="px-4 w-6 h-auto text-orange-500 hover:text-orange-400 transition-all duration-150 ease-in-out" icon="fa-solid fa-rotate-left" />
         </button>
       </div>
     </td>
