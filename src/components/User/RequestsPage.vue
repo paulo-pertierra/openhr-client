@@ -18,6 +18,13 @@ axios
   });
 </script>
 <template>
+  <div class="flex my-4 justify-end">
+    <button
+      class="bg-blue-600 hover:bg-blue-800 transition-all ease-in-out duration-250 text-white p-2 rounded-lg"
+    >
+      Add a Request
+    </button>
+  </div>
   <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
       <RequestsTableHeader />

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const tableHeads = ["Name", "Department", "Phone", "Email", "Attendance"];
+const tableHeads = ["Name", "Department", "Phone", "Email", "Attendance", "Actions"];
 </script>
 <template>
   <thead

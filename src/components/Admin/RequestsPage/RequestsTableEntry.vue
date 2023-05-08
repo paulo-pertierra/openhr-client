@@ -6,7 +6,7 @@ import router from "@/router";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faCircleXmark, faCircleCheck, faRotateLeft } from "@fortawesome/free-solid-svg-icons";
-library.add(faCircleXmark, faCircleCheck, faRotateLeft)
+library.add(faCircleXmark, faCircleCheck, faRotateLeft);
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
@@ -78,24 +78,25 @@ function pendingRequest() {
     </td>
     <td class="pr-4 text-right">
       <div v-if="props.transaction.status === 'Pending'">
-        <button
-          @click="approveRequest()"
-        >
-        <FontAwesomeIcon class="px-1 w-6 h-auto text-green-600 hover:text-green-800 transition-all duration-150 ease-in-out" icon="fa-solid fa-circle-check" />
+        <button @click="approveRequest()">
+          <FontAwesomeIcon
+            class="px-1 w-6 h-auto text-green-600 hover:text-green-800 transition-all duration-150 ease-in-out"
+            icon="fa-solid fa-circle-check"
+          />
         </button>
-        <button
-          @click="declineRequest()"
-          href="#"
-        >
-        <FontAwesomeIcon class=" w-6 h-auto text-red-600 hover:text-red-800 transition-all duration-150 ease-in-out" icon="fa-solid fa-circle-xmark" />
+        <button @click="declineRequest()" href="#">
+          <FontAwesomeIcon
+            class="w-6 h-auto text-red-600 hover:text-red-800 transition-all duration-150 ease-in-out"
+            icon="fa-solid fa-circle-xmark"
+          />
         </button>
       </div>
       <div v-else>
-        <button
-          @click="pendingRequest()"
-          href="#"
-        >
-        <FontAwesomeIcon class="px-4 w-6 h-auto text-orange-500 hover:text-orange-400 transition-all duration-150 ease-in-out" icon="fa-solid fa-rotate-left" />
+        <button @click="pendingRequest()" href="#">
+          <FontAwesomeIcon
+            class="px-4 w-6 h-auto text-orange-500 hover:text-orange-400 transition-all duration-150 ease-in-out"
+            icon="fa-solid fa-rotate-left"
+          />
         </button>
       </div>
     </td>

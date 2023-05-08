@@ -24,8 +24,7 @@ const userLoggedOut = async () => {
     const data = JSON.parse(localstore || "{}");
     const role: string = data.role;
     if (role === "EMPLOYEE" || role === "INTERN") return "/user/dashboard";
-    else return "/admin/dashboard"
-
+    else return "/admin/dashboard";
   }
 };
 

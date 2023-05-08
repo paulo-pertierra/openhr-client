@@ -20,6 +20,6 @@ const props = defineProps(["transaction"]);
     <td class="px-6 py-4">
       {{ moment(props.transaction.endDate).format("LLL") }}
     </td>
-    <td class="px-6 py-4">PENDING</td>
+    <td class="px-6 py-4">{{ props.transaction.status }}</td>
   </tr>
 </template>

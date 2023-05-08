@@ -5,6 +5,12 @@ import axios from "axios";
 import { onMounted, ref } from "vue";
 import { initFlowbite } from "flowbite";
 
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
+library.add(faUserPlus);
+
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
 const employees = ref([]);
 axios.get("/users?profile=true").then((res) => {
   employees.value = res.data;
@@ -41,8 +47,9 @@ onMounted(() => initFlowbite());
     <div>
       <RouterLink
         to="/admin/register"
-        class="text-xs bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-2 rounded-r-lg border-solid border-white-500 border-2"
+        class="text-xs bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-2 rounded-lg border-solid border-white-500 border-2"
       >
+        <font-awesome-icon icon="fa-solid fa-user-plus" />
         New Employee
       </RouterLink>
     </div>
