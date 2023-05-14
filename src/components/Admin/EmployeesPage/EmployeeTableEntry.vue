@@ -16,7 +16,7 @@ const user = useUserStore();
 function deleteEmployee() {
   axios
     .delete(`/users/${props.info.id}`)
-    .then((res) => Swal.fire("Success.", "User successfully removed,", "success"));
+    .then(() => Swal.fire("Success.", "User successfully removed,", "success"));
 }
 </script>
 <template>
@@ -25,7 +25,7 @@ function deleteEmployee() {
   >
     <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
       <RouterLink :to="'/admin/employees/' + props.info.id">
-        {{ props.info.profile.lastName }}
+        {{ props.info.profile.lastName }},
         {{ props.info.profile.firstName }}
         {{ props.info.profile.middleName.charAt(0) }}.
         {{ props.info.profile.suffix }}

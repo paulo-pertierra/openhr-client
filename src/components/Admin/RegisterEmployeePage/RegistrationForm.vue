@@ -20,8 +20,8 @@ function generateCredentials() {
   employee.data.user.username = (
     employee.data.profile.firstName.toLowerCase() +
     "." +
-    employee.data.profile.lastName.toLowerCase() +
-    employee.data.profile.middleName.charAt(0).toLowerCase()
+    employee.data.profile.lastName.toLowerCase().replace(" ", "") +
+    employee.data.profile.middleName.charAt(0).toLowerCase().replace(" ", "")
   ).replace(" ", "");
   employee.data.user.password = randomstring.generate(12);
 }
@@ -209,8 +209,8 @@ import "@vuepic/vue-datepicker/dist/main.css";
               id="roles"
               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
-              <option value="ADMIN">Full Time</option>
-              <option value="EMPLOYEE">Part Time</option>
+              <option value="FULLTIME">Full Time</option>
+              <option value="PARTTIME">Part Time</option>
               <option value="INTERN">Intern</option>
             </select>
           </div>

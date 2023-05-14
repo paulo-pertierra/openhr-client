@@ -45,11 +45,6 @@ axios.get("/time").then((res) => {
           :key="index"
           :attendance="attendance"
         />
-        <AttendancesTableEntry
-          v-for="(attendance, index) in attendances"
-          :key="index"
-          :attendance="attendance"
-        />
       </tbody>
     </table>
   </div>
