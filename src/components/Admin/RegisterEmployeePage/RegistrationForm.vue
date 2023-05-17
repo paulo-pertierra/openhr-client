@@ -5,6 +5,18 @@ const employee = useEmployeeDataStore();
 
 import axios from "axios";
 import Swal from "sweetalert2";
+
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import {
+  faGear,
+  faArrowRight,
+  faUserPlus,
+  faArrowLeft,
+  faCopy
+} from "@fortawesome/free-solid-svg-icons";
+import { library } from "@fortawesome/fontawesome-svg-core";
+library.add(faGear, faArrowRight, faUserPlus, faArrowLeft, faCopy);
+
 function registerEmployee() {
   axios
     .post("/users", employee.data)
@@ -13,6 +25,13 @@ function registerEmployee() {
     })
     .catch((error) => (Swal.fire("Error", "Something went wrong.", "error"), console.error(error)));
 }
+
+import { reactive } from "vue";
+const credentials = reactive({
+  username: "",
+  password: ""
+});
+
 function generateCredentials() {
   if (!employee.data.profile.lastName || !employee.data.profile.firstName) {
     Swal.fire("Error", "No data to generate from.", "error");
@@ -25,10 +44,23 @@ function generateCredentials() {
     employee.data.profile.middleName.charAt(0).toLowerCase().replace(" ", "")
   ).replace(" ", "");
   employee.data.user.password = randomstring.generate(12);
+
+  credentials.username = employee.data.user.username;
+  credentials.password = employee.data.user.password;
 }
 
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
+
+function copyCredentialsToClipboard() {
+  if (!credentials.username.length || !credentials.password.length) {
+    Swal.fire("Error", "No data is generated.", "error");
+    return;
+  }
+  navigator.clipboard.writeText(
+    "Username: " + credentials.username + "\nPassword: " + credentials.password
+  );
+}
 </script>
 
 <template>
@@ -262,12 +294,20 @@ import "@vuepic/vue-datepicker/dist/main.css";
               required
             />
           </div>
-          <button
-            @click="generateCredentials()"
-            class="col-span-3 w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-            <FontAwesomeIcon icon="fa-solid fa-gear" class="px-2" />Generate username and Password
-          </button>
+          <div class="grid grid-cols-2 gap-2">
+            <button
+              @click="generateCredentials()"
+              class="col-span-1 text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              <FontAwesomeIcon icon="fa-solid fa-gear" class="px-2" />Generate
+            </button>
+            <button
+              @click="copyCredentialsToClipboard()"
+              class="col-span-1 text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              <FontAwesomeIcon icon="fa-solid fa-copy" class="px-2" />Copy to Clipboard
+            </button>
+          </div>
         </div>
       </div>
       <div class="grid grid-cols-5 gap-2">

@@ -57,3 +57,14 @@ export const useEmployeeDataStore = defineStore("employeeData", () => {
   });
   return { data, step, goBack, nextStep };
 });
+
+export const useEmployeeTableSorterStore = defineStore("employeeTableSorter", () => {
+  const by = ref("lastName");
+  const order = ref("asc");
+  function setSorter(newBy: string, newOrder: string) {
+    by.value = newBy;
+    order.value = newOrder;
+    console.log("Changed: " + by.value + order.value);
+  }
+  return { by, order, setSorter };
+});

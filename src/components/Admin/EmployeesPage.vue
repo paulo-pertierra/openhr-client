@@ -2,7 +2,7 @@
 import TableHead from "./EmployeesPage/EmployeeTableHead.vue";
 import TableEntry from "./EmployeesPage/EmployeeTableEntry.vue";
 import axios from "axios";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import { initFlowbite } from "flowbite";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -11,10 +11,21 @@ library.add(faUserPlus);
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
+import { useEmployeeTableSorterStore } from "@/stores/pinia";
+
+const sort = useEmployeeTableSorterStore();
 const employees = ref([]);
-axios.get("/users?profile=true").then((res) => {
+
+onMounted(()=>{
+  axios.get(`/users?profile=true`).then((res) => {
+  employees.value = res.data;
+})})
+
+watch(sort, ()=> {
+  axios.get(`/users?profile=true&sort=${sort.order}&sortBy=${sort.by}`).then((res) => {
   employees.value = res.data;
 });
+})
 
 onMounted(() => initFlowbite());
 </script>
