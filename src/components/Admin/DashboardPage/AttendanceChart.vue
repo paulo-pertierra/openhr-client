@@ -1,6 +1,10 @@
 <template>
-  <p>Put this in a card so it looks cleaner</p>
-  <Bar id="my-chart-id" :options="chartOptions" :data="chartData" />
+  <Bar
+    id="my-chart-id"
+    :options="chartOptions"
+    :data="chartData"
+    style="padding: 3%; margin: 2%; height: 450px; width: 100%"
+  />
 </template>
 
 <script lang="ts">

@@ -22,12 +22,15 @@ export const useUserStore = defineStore(
 export const useEmployeeDataStore = defineStore("employeeData", () => {
   const step = ref(0);
   function nextStep() {
-      if (step.value >= 4) return;
+    if (step.value >= 4) return;
     step.value++;
   }
   function goBack() {
-    if (step.value <= 0) {router.go(-1); return;}
-    
+    if (step.value <= 0) {
+      router.go(-1);
+      return;
+    }
+
     step.value--;
   }
 
