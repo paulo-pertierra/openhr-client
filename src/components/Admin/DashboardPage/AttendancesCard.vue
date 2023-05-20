@@ -1,7 +1,7 @@
 <template>
-  <div class="border max-w-full shadow-lg h-64 rounded-lg m-4 bg-white">
-    <h1 class="text-2xl py-3 px-4 bg-indigo-700 text-white rounded-t-lg">Attendances</h1>
-    <div class="overflow-auto h-48">
+  <div class="border w-full shadow-lg h-60 rounded-lg bg-white">
+    <h1 class="text-2xl py-3 h-20 px-4 bg-indigo-700 text-white rounded-t-lg">Attendances</h1>
+    <div class="overflow-auto h-40">
       <div class="p-4 inline-flex w-full justify-between cursor-pointer">
         <p class="hover:text-indigo-950">Pertierra, Paulo Roman H.</p>
         <p class="text-green-500">20 minutes early</p>

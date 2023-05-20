@@ -1,3 +1,4 @@
+import "./init.ts";
 // Vue Defaults
 import { createApp } from "vue";
 import App from "./App.vue";

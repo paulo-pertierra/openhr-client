@@ -36,7 +36,7 @@ axios.get("/time").then((res) => {
     </div>
   </div>
 
-  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <div class="relative overflow-auto shadow-md sm:rounded-lg h-144">
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
       <AttendancesTableHead />
       <tbody>

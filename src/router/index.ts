@@ -23,7 +23,8 @@ const userLoggedOut = async () => {
   if (localstore) {
     const data = JSON.parse(localstore || "{}");
     const role: string = data.role;
-    return `/${role.toLowerCase()}`;
+    if (role === "EMPLOYEE" || role === "INTERN") return "/user/dashboard";
+    else return "/admin/dashboard";
   }
 };
 
@@ -84,6 +85,14 @@ const router = createRouter({
           component: () => import("../components/Admin/EmployeeProfilePage.vue")
         },
         {
+          path: "register",
+          component: () => import("../components/Admin/RegisterEmployeePage.vue")
+        },
+        {
+          path: "employees/edit",
+          component: () => import("../components/Admin/EditEmployeePage.vue")
+        },
+        {
           path: "requests",
           component: () => import("../components/Admin/RequestsPage.vue")
         },
@@ -112,6 +121,10 @@ const router = createRouter({
           component: () => import("../components/User/RequestsPage.vue")
         }
       ]
+    },
+    {
+      path: "/sandbox",
+      component: () => import("../components/SandBoxPage.vue")
     }
   ]
 });
