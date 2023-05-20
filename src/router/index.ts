@@ -89,6 +89,10 @@ const router = createRouter({
           component: () => import("../components/Admin/RegisterEmployeePage.vue")
         },
         {
+          path: "employees/edit",
+          component: () => import("../components/Admin/EditEmployeePage.vue")
+        },
+        {
           path: "requests",
           component: () => import("../components/Admin/RequestsPage.vue")
         },
