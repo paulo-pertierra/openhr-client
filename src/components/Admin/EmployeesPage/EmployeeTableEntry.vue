@@ -41,8 +41,8 @@ const user = useUserStore();
     </td>
     <td>
       <button
-        :data-modal-target="props.info.id"
-        :data-modal-toggle="props.info.id"
+        :data-modal-target="props.info.id + 'edit'"
+        :data-modal-toggle="props.info.id + 'edit'"
         class="mx-1 my-1 inline text-white bg-orange-500 hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-3 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         type="button"
       >
@@ -68,6 +68,16 @@ const user = useUserStore();
     class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
   >
     <ViewEmployeeAttendance :user-id="props.info.id" />
+  </div>
+
+  <!-- Edit Employee route?-->
+  <div
+    :id="props.info.id + 'edit'"
+    tabindex="-1"
+    aria-hidden="true"
+    class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
+  >
+    <h1>Hello world</h1>
   </div>
 
   <!-- Deletion confirmation modal-->

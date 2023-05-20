@@ -16,16 +16,17 @@ import { useEmployeeTableSorterStore } from "@/stores/pinia";
 const sort = useEmployeeTableSorterStore();
 const employees = ref([]);
 
-onMounted(()=>{
+onMounted(() => {
   axios.get(`/users?profile=true`).then((res) => {
-  employees.value = res.data;
-})})
-
-watch(sort, ()=> {
-  axios.get(`/users?profile=true&sort=${sort.order}&sortBy=${sort.by}`).then((res) => {
-  employees.value = res.data;
+    employees.value = res.data;
+  });
 });
-})
+
+watch(sort, () => {
+  axios.get(`/users?profile=true&sort=${sort.order}&sortBy=${sort.by}`).then((res) => {
+    employees.value = res.data;
+  });
+});
 
 onMounted(() => initFlowbite());
 </script>
