@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { reactive } from "vue";
 
-import { useEmployeeDataStore } from '@/stores/pinia';
+import { useEmployeeDataStore } from "@/stores/pinia";
 const employee = useEmployeeDataStore();
 
 import Swal from "sweetalert2";

@@ -226,9 +226,8 @@ function logOut() {
           </RouterLink>
         </li>
         <li>
-          <a
-            href="#"
-            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+          <RouterLink to="/admin/calendar"
+          class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             <svg
               aria-hidden="true"
@@ -244,11 +243,11 @@ function logOut() {
               ></path>
             </svg>
             <span class="flex-1 ml-3 whitespace-nowrap">Calendar</span>
-          </a>
+          </RouterLink>
         </li>
         <li>
           <RouterLink
-            to="profile"
+            to="/admin/profile"
             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             <svg

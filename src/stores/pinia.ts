@@ -33,11 +33,30 @@ export const useEmployeeDataStore = defineStore("employeeData", () => {
 
     step.value--;
   }
+  function clearCache() {
+    data.user = {
+      username: "",
+      role: ""
+    };
+    data.profile = {
+      lastName: "", // Step 0
+      firstName: "", // Step 0
+      middleName: "", // Step 0
+      suffix: "", // Step 0
+      gender: "", // Step 1
+      birthDate: "", // Step 1
+      contactNumber: "", // Step 1
+      contactEmail: "", // Step 1
+      employmentType: "", // Final Step
+      department: "", // Final Step
+      hireDate: "", // Autogen
+      supervisor: "" // Final Step
+    };
+  }
 
   const data = reactive({
     user: {
       username: "",
-      password: "",
       role: ""
     },
     profile: {
@@ -55,7 +74,7 @@ export const useEmployeeDataStore = defineStore("employeeData", () => {
       supervisor: "" // Final Step
     }
   });
-  return { data, step, goBack, nextStep };
+  return { data, step, goBack, nextStep, clearCache };
 });
 
 export const useEmployeeTableSorterStore = defineStore("employeeTableSorter", () => {

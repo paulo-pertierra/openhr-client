@@ -1,11 +1,12 @@
 <script lang="ts" setup>
+const props = defineProps(["id"]);
+
 import { useEmployeeDataStore } from "@/stores/pinia";
 const employee = useEmployeeDataStore();
 
 import EditEmployeeFormStepOne from "./EditEmployeeForm/EditEmployeeFormStepOne.vue";
 import EditEmployeeFormStepTwo from "./EditEmployeeForm/EditEmployeeFormStepTwo.vue";
 import EditEmployeeFormStepThree from "./EditEmployeeForm/EditEmployeeFormStepThree.vue";
-import EditEmployeeFormStepFour from "./EditEmployeeForm/EditEmployeeFormStepFour.vue";
 import EditEmployeeFormControls from "./EditEmployeeForm/EditEmployeeFormControls.vue";
 </script>
 
@@ -23,10 +24,9 @@ import EditEmployeeFormControls from "./EditEmployeeForm/EditEmployeeFormControl
         <EditEmployeeFormStepOne v-if="employee.step === 0" />
         <EditEmployeeFormStepTwo v-if="employee.step === 1" />
         <EditEmployeeFormStepThree v-if="employee.step === 2" />
-        <EditEmployeeFormStepFour v-if="employee.step === 3" />
       </div>
       <div class="grid grid-cols-5 gap-2">
-        <EditEmployeeFormControls />
+        <EditEmployeeFormControls :id="props.id" />
       </div>
     </div>
   </div>

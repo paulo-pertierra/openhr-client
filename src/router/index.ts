@@ -89,7 +89,7 @@ const router = createRouter({
           component: () => import("../components/Admin/RegisterEmployeePage.vue")
         },
         {
-          path: "employees/edit",
+          path: "employees/edit/:id",
           component: () => import("../components/Admin/EditEmployeePage.vue")
         },
         {
@@ -99,6 +99,10 @@ const router = createRouter({
         {
           path: "profile",
           component: () => import("../components/Admin/MyProfilePage.vue")
+        },
+        {
+          path: "calendar",
+          component: () => import("../components/Admin/CalendarPage.vue")
         }
       ],
       beforeEnter: identifyAdmin
