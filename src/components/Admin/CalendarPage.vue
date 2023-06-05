@@ -1,61 +1,10 @@
-<script lang="ts">
-import FullCalendar from "@fullcalendar/vue3";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import listPlugin from "@fullcalendar/list";
-import interactionPlugin from "@fullcalendar/interaction";
-import axios from "axios";
-
-export default {
-  components: {
-    FullCalendar // make the <FullCalendar> tag available
-  },
-  data() {
-    return {
-      calendarOptions: {
-        plugins: [dayGridPlugin, interactionPlugin, listPlugin],
-        showNonCurrentDates: false,
-        height: 700,
-        width: "100%",
-        initialView: "dayGridMonth",
-        moreLinkClick: "popover",
-        dayMaxEvents: 2,
-        views: {
-          dayGridMonth: { buttonText: 'Grid' },
-          listDay: { buttonText: 'Days' },
-          listWeek: { buttonText: 'Weeks' },
-          listMonth: { buttonText: 'Months' }
-        },
-        headerToolbar: {
-          left: 'prev,today,next',
-          center: 'title',
-          right: 'dayGridMonth,listDay,listWeek,listMonth'
-        },
-        events: []
-      }
-    };
-  },
-  methods: {
-    handleDateClick: function (arg: any) {
-      alert("date click! " + arg.dateStr);
-    }
-  },
-  mounted() {
-    axios.get("/events").then((response) => {
-      this.calendarOptions.events = response.data.data;
-    })
-  },
-};
+<script lang="ts" setup>
+import CalendarView from "./CalendarPage/CalendarView.vue";
+import CalendarEventControls from "./CalendarPage/CalendarEventControls.vue";
 </script>
-
-<style scoped>
-.baguio-holiday {
-  background-color: #c4d9e0;
-  color: #000000;
-}
-</style>
-
 <template>
-  <div class="lg:w-9/12 w-full">
-    <FullCalendar :options="calendarOptions" />
+  <div class="grid grid-cols-6 gap-10">
+    <CalendarView class="lg:col-span-4 w-full col-span-6" />
+    <CalendarEventControls />
   </div>
 </template>

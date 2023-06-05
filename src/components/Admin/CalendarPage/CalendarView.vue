@@ -14,7 +14,7 @@ export default {
       calendarOptions: {
         plugins: [dayGridPlugin, interactionPlugin, listPlugin],
         showNonCurrentDates: false,
-        height: 500,
+        height: 700,
         width: "100%",
         initialView: "dayGridMonth",
         moreLinkClick: "popover",
@@ -27,7 +27,8 @@ export default {
         },
         headerToolbar: {
           left: "prev,today,next",
-          right: "title"
+          center: "title",
+          right: "dayGridMonth,listDay,listWeek,listMonth"
         },
         events: []
       }
@@ -56,13 +57,5 @@ export default {
 <template>
   <div>
     <FullCalendar :options="calendarOptions" />
-  </div>
-  <div class="my-4 w-full">
-    <RouterLink
-      to="/admin/calendar"
-      class="text-xs bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg border-solid border-white-500 border-2"
-    >
-      Open Calendar</RouterLink
-    >
   </div>
 </template>

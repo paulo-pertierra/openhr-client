@@ -36,7 +36,7 @@ const options = {
   />
 </template>
 
-<script>
+<script lang="ts">
 // DataPage.vue
 import { Pie } from "vue-chartjs";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
@@ -49,21 +49,21 @@ export default {
   components: { Pie },
   data() {
     return {
-      stats: []
+      stats: [0, 0, 0]
     };
   },
   mounted() {
     axios.get("/stats/users").then((res) => {
-      this.stats = [res.data.data.present, res.data.data.leave, res.data.data.absent];
+      this.stats = [res.data.data.present, res.data.data.late, res.data.data.absent];
     });
   },
   computed: {
     chartData() {
       return {
-        labels: ["Present", "Leave", "Absent"],
+        labels: ["On Time", "Late", "Absent"],
         datasets: [
           {
-            backgroundColor: ["#6D28D9", "#C026D3", "#6366F1"],
+            backgroundColor: ["#15803D", "#F97316", "#EF4444"],
             data: this.stats
           }
         ]

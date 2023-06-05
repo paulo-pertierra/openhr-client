@@ -2,6 +2,7 @@
 import { reactive, ref } from "vue";
 import AttendancesTableHead from "./AttendancesPage/AttendancesTableHead.vue";
 import AttendancesTableEntry from "./AttendancesPage/AttendancesTableEntry.vue";
+import UserCalendar from "./AttendancesPage/UserCalendar.vue";
 import axios from "axios";
 
 const user = reactive(JSON.parse(localStorage.getItem("user") || "{}"));
@@ -55,9 +56,7 @@ axios.get(`/time/${user.id}`).then((res) => {
       </div>
     </div>
     <div class="col-span-2">
-      <div class="h-96 border-2 border-gray-800">
-        <span>Calendar Here</span>
-      </div>
+      <UserCalendar />
     </div>
   </div>
 </template>

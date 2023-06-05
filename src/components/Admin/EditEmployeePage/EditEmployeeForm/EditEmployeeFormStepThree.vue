@@ -47,7 +47,9 @@ import "@vuepic/vue-datepicker/dist/main.css";
         </select>
       </div>
       <div class="col-span-2">
-        <label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        <label
+          for="hiring-date"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >Hiring Date</label
         >
         <VueDatePicker v-model="employee.data.profile.hireDate"></VueDatePicker>

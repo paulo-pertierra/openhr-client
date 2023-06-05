@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import AttendanceChart from "./DashboardPage/AttendanceChart.vue";
+// import AttendanceChart from "./DashboardPage/AttendanceChart.vue";
 import AttendancesCard from "./DashboardPage/AttendancesCard.vue";
-import LineChart from "./DashboardPage/LineChart.vue";
+// import LineChart from "./DashboardPage/LineChart.vue";
 import DashboardCalendar from "@/components/Admin/DashboardPage/DashboardCalendar.vue";
 import AttendanceTime from "@/components/Admin/DashboardPage/AttendanceTime.vue";
-import AdminHeader from "./DashboardPage/AdminHeader.vue";
+// import AdminHeader from "./DashboardPage/AdminHeader.vue";
 </script>
 <template>
   <div class="grid gap-4 lg:grid-cols-4 md:grid-cols-1">
