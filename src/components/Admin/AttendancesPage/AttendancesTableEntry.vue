@@ -11,6 +11,12 @@ const todayClass = ref("bg-white");
 if (moment().format("YYYY MMMM DD") === moment(props.attendance.recordDate).format("YYYY MM DD")) {
   todayClass.value = "bg-emerald-50 border-white"
 }
+
+const workHours = ref(props.attendance.hoursWorked)
+
+if (workHours.value > 4) {
+  workHours.value--;
+}
 </script>
 <template>
   <tr
@@ -37,17 +43,28 @@ if (moment().format("YYYY MMMM DD") === moment(props.attendance.recordDate).form
       {{ moment(props.attendance.timeOut).format("hh:mm A") }}
     </td>
     <td class="px-6 py-4">
+      <span v-if="props.attendance.hoursWorked">{{ workHours }}</span>
+      <span v-else>No Data</span>
+      <span v-if="props.attendance.hoursWorked > 8"></span>
+    </td>
+    <td class="px-6 py-4">
       <p
         v-if="props.attendance.remark === 'OnTime'"
-        class="mx-0.5 inline bg-emerald-600 w-10 text-white p-1.5 rounded-lg text-center"
+        class="mx-0.5 font-bold inline bg-emerald-600 w-10 text-white p-2 rounded-lg text-center"
       >
-        On Time
+       🕒 On Time
       </p>
       <p
         v-if="props.attendance.remark === 'Late'"
-        class="mx-0.5 inline bg-orange-500 w-10 text-white p-1.5 rounded-lg text-center"
+        class="mx-0.5 font-bold inline bg-orange-500 w-10 text-white p-2 rounded-lg text-center"
       >
-        Late
+      ⏰ Late
+      </p>
+      <p
+        v-if="props.attendance.remark === 'Absent'"
+        class="mx-0.5 font-bold inline bg-red-500 w-10 text-white p-2 rounded-lg text-center"
+      >
+        😔 Absent
       </p>
       <p
         v-if="false"
@@ -56,8 +73,5 @@ if (moment().format("YYYY MMMM DD") === moment(props.attendance.recordDate).form
         Early Out
       </p>
     </td>
-    <!-- <td class="px-6 py-4 text-right">
-            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-          </td> -->
   </tr>
 </template>

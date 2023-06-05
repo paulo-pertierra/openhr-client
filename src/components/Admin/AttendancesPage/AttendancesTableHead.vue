@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const tableHeads = ["NAME", "DEPARTMENT", "DATE", "TIME IN", "TIME OUT", "REMARKS"];
+const tableHeads = ["NAME", "DEPARTMENT", "DATE", "TIME IN", "TIME OUT", "HOURS", "REMARKS"];
 </script>
 
 <template>
