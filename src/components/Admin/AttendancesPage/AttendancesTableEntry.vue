@@ -4,8 +4,6 @@ import moment from "moment";
 moment.updateLocale(moment.locale(), { invalidDate: "No Data" });
 const props = defineProps(["attendance"]);
 
-const late = ref(false);
-
 const todayClass = ref("bg-white");
 // bg-emerald-50 border-white
 if (moment().format("YYYY MMMM DD") === moment(props.attendance.recordDate).format("YYYY MM DD")) {
