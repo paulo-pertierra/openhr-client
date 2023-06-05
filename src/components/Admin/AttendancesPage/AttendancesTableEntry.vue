@@ -49,6 +49,12 @@ if (workHours.value > 4) {
     </td>
     <td class="px-6 py-4">
       <p
+        v-if="Object.is(props.attendance.timeOut, null) && props.attendance.remark !='Absent'"
+        class="mx-0.5 font-bold inline bg-blue-500 w-10 text-white p-2 rounded-lg text-center"
+      >
+        ⌛ No Out
+      </p>
+      <p
         v-if="props.attendance.remark === 'OnTime'"
         class="mx-0.5 font-bold inline bg-emerald-600 w-10 text-white p-2 rounded-lg text-center"
       >
