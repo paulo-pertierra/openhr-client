@@ -7,10 +7,10 @@ const props = defineProps(["attendance"]);
 const todayClass = ref("bg-white");
 // bg-emerald-50 border-white
 if (moment().format("YYYY MMMM DD") === moment(props.attendance.recordDate).format("YYYY MM DD")) {
-  todayClass.value = "bg-emerald-50 border-white"
+  todayClass.value = "bg-emerald-50 border-white";
 }
 
-const workHours = ref(props.attendance.hoursWorked)
+const workHours = ref(props.attendance.hoursWorked);
 
 if (workHours.value > 4) {
   workHours.value--;
@@ -18,7 +18,10 @@ if (workHours.value > 4) {
 </script>
 <template>
   <tr
-    :class="['border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600', todayClass]"
+    :class="[
+      'border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600',
+      todayClass
+    ]"
   >
     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
       {{ props.attendance.user.profile.lastName }}
@@ -43,11 +46,10 @@ if (workHours.value > 4) {
     <td class="px-6 py-4">
       <span v-if="props.attendance.hoursWorked">{{ workHours }}</span>
       <span v-else>No Data</span>
-      <span v-if="props.attendance.hoursWorked > 8"></span>
     </td>
     <td class="px-6 py-4">
       <p
-        v-if="Object.is(props.attendance.timeOut, null) && props.attendance.remark !='Absent'"
+        v-if="Object.is(props.attendance.timeOut, null) && props.attendance.remark != 'Absent'"
         class="mx-0.5 font-bold inline bg-blue-500 w-10 text-white p-2 rounded-lg text-center"
       >
         ⌛ No Out
@@ -56,13 +58,13 @@ if (workHours.value > 4) {
         v-if="props.attendance.remark === 'OnTime'"
         class="mx-0.5 font-bold inline bg-emerald-600 w-10 text-white p-2 rounded-lg text-center"
       >
-       🕒 On Time
+        🕒 On Time
       </p>
       <p
         v-if="props.attendance.remark === 'Late'"
         class="mx-0.5 font-bold inline bg-orange-500 w-10 text-white p-2 rounded-lg text-center"
       >
-      ⏰ Late
+        ⏰ Late
       </p>
       <p
         v-if="props.attendance.remark === 'Absent'"

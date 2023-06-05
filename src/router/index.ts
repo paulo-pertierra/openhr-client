@@ -127,8 +127,8 @@ const router = createRouter({
       ]
     },
     {
-      path: "/sandbox",
-      component: () => import("../components/SandBoxPage.vue")
+      path: "/present",
+      component: () => import("../components/TimeRecordScanner.vue")
     }
   ]
 });
