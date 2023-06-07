@@ -1,33 +1,3 @@
-<!-- <template>
-  <Pie :data="data" :options="options" style="padding: 3%; margin: 2%; height: 450px; width: 100%" />
-</template>
-
-<script lang="ts" setup>
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Pie } from "vue-chartjs";
-import axios from "axios";
-
-
-ChartJS.register(ArcElement, Tooltip, Legend);
-
-
-
-const data = {
-  labels: ["Present", "Leave", "Absent"],
-  datasets: [
-    {
-      backgroundColor: ["#E46651", "#00D8FF", "#DD1B16"],
-      data: [1, 1, 1]
-    }
-  ]
-};
-
-const options = {
-  responsive: true,
-  maintainAspectRatio: false
-};
-</script> -->
-
 <template>
   <Pie
     :data="chartData"
