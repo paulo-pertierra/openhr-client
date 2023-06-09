@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const props = defineProps(["id"]);
 
-import { useEmployeeDataStore } from "@/stores/pinia";
+import { useEmployeeDataStore } from "../../../../stores/pinia";
 const employee = useEmployeeDataStore();
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
