@@ -76,7 +76,21 @@ export const useEmployeeDataStore = defineStore("employeeData", () => {
       supervisor: "" // Final Step
     }
   });
-  return { data, step, goBack, nextStep, clearCache };
+  function editEmployee(userId) {
+    axios
+      .put(`/users/${userId}`, () => data)
+      .then(() => {
+        console.log(data);
+
+        Swal.fire("Success!", "Employee successfully edited.", "success");
+        clearCache();
+      })
+      .catch(() => {
+        console.log(data);
+        Swal.fire("Error", "Something went wrong.", "error");
+      });
+  }
+  return { data, step, goBack, nextStep, clearCache, editEmployee };
 });
 
 export const useEmployeeTableSorterStore = defineStore("employeeTableSorter", () => {

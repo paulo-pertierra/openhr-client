@@ -4,17 +4,17 @@ import axios from "axios";
 import { QrStream } from "vue3-qr-reader";
 import Swal from "sweetalert2";
 
-const uuidRegExPattern = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
+const uuidRegExPattern =
+  /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
 
-const invalidQrId = ref(false)
-
+const invalidQrId = ref(false);
 
 function onDecode(scannedString: string) {
   if (!scannedString.match(uuidRegExPattern)) {
-    invalidQrId.value = true
+    invalidQrId.value = true;
     setTimeout(() => {
-      invalidQrId.value = false
-    }, 3000)
+      invalidQrId.value = false;
+    }, 3000);
     return;
   }
 
@@ -27,25 +27,25 @@ function onDecode(scannedString: string) {
         timer: 1500,
         showCancelButton: false,
         showConfirmButton: false
-      })
+      });
       return;
     }
     if (res.status === 202) {
       axios.post(`/time/out/${scannedString}`).then((res) => {
         if (res.status === 200) {
           Swal.fire({
-        icon: "success",
-        title: "Success!",
-        text: "You timed out successfully.",
-        timer: 1500,
-        showCancelButton: false,
-        showConfirmButton: false
-      })
+            icon: "success",
+            title: "Success!",
+            text: "You timed out successfully.",
+            timer: 1500,
+            showCancelButton: false,
+            showConfirmButton: false
+          });
         }
-      })
+      });
       return;
     }
-  })
+  });
 }
 </script>
 
@@ -57,7 +57,9 @@ function onDecode(scannedString: string) {
         <div class="w-[400px] h-[225px] rounded-lg overflow-hidden">
           <QrStream @decode="onDecode" />
         </div>
-        <div v-if="invalidQrId" class="w-full p-4 bg-red-600 rounded-lg text-white mt-2">The QR code is invalid.</div>
+        <div v-if="invalidQrId" class="w-full p-4 bg-red-600 rounded-lg text-white mt-2">
+          The QR code is invalid.
+        </div>
       </div>
     </div>
   </main>
@@ -80,7 +82,6 @@ main {
 }
 
 @keyframes shake {
-
   10%,
   90% {
     transform: translate3d(-1px, 0, 0);

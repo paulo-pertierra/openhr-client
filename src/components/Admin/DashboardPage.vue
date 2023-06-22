@@ -18,7 +18,7 @@ import AdminHeader from "./DashboardPage/AdminHeader.vue";
       <div
         class="w-full h-full bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
       >
-        <AttendancesPieChart/>
+        <AttendancesPieChart />
       </div>
     </div>
     <div class="lg:col-span-2 row-span-1 md:col-span-1">

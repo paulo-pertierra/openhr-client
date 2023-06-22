@@ -4,6 +4,9 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 
+// Styling
+import "./assets/main.css";
+import Swal from "sweetalert2";
 // Pinia Defaults
 import { createPinia } from "pinia";
 import piniaPersist from "pinia-plugin-persistedstate";
@@ -11,14 +14,13 @@ import piniaPersist from "pinia-plugin-persistedstate";
 // Axios Defaults
 import axios from "axios";
 axios.defaults.baseURL = import.meta.env.VITE_API_URL;
+
 try {
-  axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem("user")}`;
-} catch {
-  Swal.fire("Expired User", "Your session has expired. Log in again.", "warning");
+  const user = JSON.parse(localStorage.getItem('user'));
+  axios.defaults.headers.common.Authorization = user.auth.info.jwt as string;
+} catch (error) {
+  error
 }
-// Styling
-import "./assets/main.css";
-import Swal from "sweetalert2";
 
 // Vue Instance
 const app = createApp(App);
