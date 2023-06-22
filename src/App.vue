@@ -6,7 +6,7 @@ import axios from "axios";
 const serverStatusRunning = ref(false);
 function checkServerStatus() {
   axios
-    .get("http://localhost:5000/ping")
+    .get(`${ 'http://192.168.100.4:5000' }/ping`)
     .then(() => (serverStatusRunning.value = true))
     .catch(() => (serverStatusRunning.value = false));
 }

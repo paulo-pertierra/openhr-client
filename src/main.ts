@@ -24,6 +24,7 @@ try {
 
 // Vue Instance
 const app = createApp(App);
+app.config.globalProperties.$BASE_URL = import.meta.env.VITE_BASE_URL;
 
 app.use(createPinia().use(piniaPersist));
 app.use(router);

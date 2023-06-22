@@ -14,6 +14,7 @@ import { RouterLink } from "vue-router";
 
 <template>
   <form id="signin-form" class="space-y-4 md:space-y-6" @submit.prevent>
+    <span class="text-center w-full block text-orange-500">Heads up! Logging in as Administrator</span>
     <div>
       <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
         >Username</label

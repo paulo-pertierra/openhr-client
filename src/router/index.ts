@@ -11,14 +11,20 @@ const router = createRouter({
     {
       path: "/",
       name: "home",
-      redirect: "/auth/user"
+      beforeEnter: () => {
+        if (isUser()) return {path: "/user"}
+        if (isAdmin()) return {path: "/admin"}
+        return { path: "/auth"}
+      }
     },
     {
       path: "/auth",
       name: "auth",
-      redirect: () => {
-        return "/auth/user";
+      beforeEnter: () => {
+        if (isUser()) return {path: "/user"}
+        if (isAdmin()) return {path: "/admin"}
       },
+      redirect: "/auth/user",
       component: () => AuthView,
       children: [
         {
@@ -43,7 +49,7 @@ const router = createRouter({
     },
     {
       path: "/admin",
-      component: () => import('@/views/UserView.vue'),
+      component: () => import('@/views/AdminView.vue'),
       beforeEnter: () => {
         if (!isAdmin()) {
           Swal.fire("Error", "You are not logged in as an admin!")
@@ -53,19 +59,5 @@ const router = createRouter({
     }
   ]
 });
-
-
-
-router.beforeEach(async (to, from) => {
-  if (
-    // make sure the user is authenticated
-    !isAuthenticated &&
-    // Avoid an infinite redirect
-    (to.fullPath !== '/auth/admin' && to.fullPath !=='/auth/user')
-  ) {
-    // redirect the user to the login page
-    return { path: '/' }
-  }
-})
 
 export default router;
