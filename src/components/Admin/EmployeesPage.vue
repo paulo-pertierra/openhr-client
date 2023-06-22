@@ -3,32 +3,22 @@ import TableHead from "./EmployeesPage/EmployeeTableHead.vue";
 import TableEntry from "./EmployeesPage/EmployeeTableEntry.vue";
 import axios from "axios";
 import { onMounted, ref, watch } from "vue";
-import { initFlowbite } from "flowbite";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 library.add(faUserPlus);
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { useUserStore } from "@/stores/user";
+import { initFlowbite } from "flowbite";
 
-import { useEmployeeTableSorterStore } from "@/stores/pinia";
-
-const sort = useEmployeeTableSorterStore();
-const employees = ref([]);
+const userStore = useUserStore();
 
 onMounted(() => {
-  axios.get(`/users?profile=true`).then((res) => {
-    employees.value = res.data;
-  });
+  initFlowbite();
+  userStore.getManyUsers()
 });
 
-watch(sort, () => {
-  axios.get(`/users?profile=true&sort=${sort.order}&sortBy=${sort.by}`).then((res) => {
-    employees.value = res.data;
-  });
-});
-
-onMounted(() => initFlowbite());
 </script>
 
 <template>
@@ -70,7 +60,7 @@ onMounted(() => initFlowbite());
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 overflow-auto">
       <TableHead />
       <tbody>
-        <TableEntry v-for="(employee, index) in employees" :key="index" :info="employee" />
+        <TableEntry v-for="(user, index) in userStore.state.users" :key="index" :user="user" />
       </tbody>
     </table>
   </div>

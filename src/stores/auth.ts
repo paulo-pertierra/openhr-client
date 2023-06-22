@@ -29,7 +29,7 @@ export const useUserAuthStore = defineStore("userAuthn", () => {
   const user = useCredentials();
   function logInUser({ username, password }) {
     axios
-      .post("http://localhost:5000/auth/user/login", { username, password })
+      .post( "http://192.168.100.4:5000" +"/auth/user/login", { username, password })
       .then((res) => {
         user.auth.info = res.data.data;
         router.push("/user");
@@ -48,7 +48,7 @@ export const useAdminAuthStore = defineStore("adminAuthn", () => {
   const user = useCredentials();
   function logInAdmin({ username, password }) {
     axios
-      .post("http://localhost:5000/auth/admin/login", { username, password })
+      .post("http://192.168.100.4:5000"+"/auth/admin/login", { username, password })
       .then((res) => {
         user.auth.info = res.data.data;
         router.push("/admin");

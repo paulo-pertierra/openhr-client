@@ -45,7 +45,12 @@ const router = createRouter({
           Swal.fire("Error", "You are not logged in as a user!")
           return { path: "/"}
         }
-      }
+      },
+      children: [
+        {
+          path: "/user/dashboard"
+        }
+      ]
     },
     {
       path: "/admin",
@@ -55,7 +60,13 @@ const router = createRouter({
           Swal.fire("Error", "You are not logged in as an admin!")
           return { path: "/"}
         }
-      }
+      },
+      children: [
+        {
+          path: '/admin/employees',
+          component: () => import('@/components/Admin/EmployeesPage.vue')
+        }
+      ]   
     }
   ]
 });

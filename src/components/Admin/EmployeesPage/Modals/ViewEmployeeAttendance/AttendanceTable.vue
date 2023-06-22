@@ -1,29 +1,30 @@
 <script lang="ts" setup>
 import axios from "axios";
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 import AttendanceTableHead from "./AttendanceTable/AttendanceTableHead.vue";
 import AttendanceTableEntry from "./AttendanceTable/AttendanceTableEntry.vue";
 import { initFlowbite } from "flowbite";
 import { onMounted } from "vue";
 
-// initialize components based on data attribute selectors
-onMounted(() => {
-  initFlowbite();
+// initialize components based on data attribute 
+const attendances = reactive({
+  state: []
 });
+const props = defineProps(["userId"]);
 
-const user = defineProps(["userId"]);
-
-const attendances = ref([]);
-
-axios
-  .get(`/time/${user.userId}`)
+onMounted(() => {
+  axios
+  .get(`/times/user/${props.userId}`)
   .then((res) => {
-    attendances.value = res.data;
-    console.log(attendances.value);
+    attendances.state = res.data.data;
+    console.log('working')
   })
   .catch(() => {
     console.log("error");
+  }).finally(()=> {
+    console.log(attendances.state)
   });
+});
 </script>
 
 <template>
@@ -32,7 +33,7 @@ axios
       <AttendanceTableHead />
       <tbody>
         <AttendanceTableEntry
-          v-for="(attendance, index) in attendances"
+          v-for="(attendance, index) in attendances.state"
           :key="index"
           :attendance="attendance"
         />

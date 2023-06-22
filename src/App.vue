@@ -2,6 +2,7 @@
 import { onMounted, ref } from "vue";
 import { RouterLink, RouterView } from "vue-router";
 import axios from "axios";
+import { initFlowbite } from "flowbite";
 
 const serverStatusRunning = ref(false);
 function checkServerStatus() {
@@ -12,6 +13,7 @@ function checkServerStatus() {
 }
 onMounted(() => {
   checkServerStatus();
+  initFlowbite();
 });
 
 const countdown = ref(5);

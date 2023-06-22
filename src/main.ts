@@ -17,7 +17,7 @@ axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
 try {
   const user = JSON.parse(localStorage.getItem('user'));
-  axios.defaults.headers.common.Authorization = user.auth.info.jwt as string;
+  axios.defaults.headers.common = {'Authorization': `Bearer ${user.auth.info.jwt as string}`}
 } catch (error) {
   error
 }
