@@ -43,24 +43,25 @@ export default {
       this.calendarOptions.events = response.data.data;
     });
   }
+
 };
 </script>
 
 <style scoped>
-.baguio-holiday {
-  background-color: #c4d9e0;
-  color: #000000;
+.fc-toolbar-title{
+  font-weight: 900;
 }
+
 </style>
 
 <template>
   <div>
     <FullCalendar :options="calendarOptions" />
   </div>
-  <div class="my-4 w-full">
+  <div class="w-full my-4">
     <RouterLink
       to="/admin/calendar"
-      class="text-xs bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg border-solid border-white-500 border-2"
+      class="px-4 py-2 text-xs font-bold text-white bg-gray-900 border-2 border-solid rounded-lg hover:bg-gray-500 border-white-500"
     >
       Open Calendar</RouterLink
     >

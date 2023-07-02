@@ -11,25 +11,25 @@ import AdminHeader from "./DashboardPage/AdminHeader.vue";
     <div class="lg:col-span-3 md:col-span-1">
       <AttendancesCard />
     </div>
-    <div class="lg:col-span-1 md:col-span-1">
+    <div class="row-span-2 lg:col-span-1 md:col-span-1">
       <AttendanceTime />
+      <br />
+      <DashboardCalendar />
     </div>
-    <div class="lg:col-span-1 row-span-1 md:col-span-1">
+    <div class="row-span-1 lg:col-span-1 md:col-span-1">
       <div
         class="w-full h-full bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
       >
         <AttendancesPieChart/>
       </div>
     </div>
-    <div class="lg:col-span-2 row-span-1 md:col-span-1">
+    <div class="row-span-1 lg:col-span-2 md:col-span-1">
       <div
         class="w-full h-full bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
       >
         <AttendanceChart />
       </div>
     </div>
-    <div class="lg:col-span-1 row-span-2 md:col-span-1">
-      <DashboardCalendar />
-    </div>
+    
   </div>
 </template>

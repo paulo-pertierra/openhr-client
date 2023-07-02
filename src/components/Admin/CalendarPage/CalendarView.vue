@@ -52,6 +52,9 @@ export default {
   background-color: #c4d9e0;
   color: #000000;
 }
+.title{
+  font-weight: 900;
+}
 </style>
 
 <template>
