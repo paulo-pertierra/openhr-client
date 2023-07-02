@@ -61,7 +61,7 @@ export default {
   <div class="w-full my-4">
     <RouterLink
       to="/admin/calendar"
-      class="px-4 py-2 text-xs font-bold text-white bg-gray-900 border-2 border-solid rounded-lg hover:bg-gray-500 border-white-500"
+      class="px-4 py-2 text-xs font-bold text-white bg-gray-900 border-2 border-solid rounded-lg hover:bg-gray-500 gitborder-white-500"
     >
       Open Calendar</RouterLink
     >
