@@ -1,23 +1,41 @@
 <script lang="ts" setup>
 import TableHead from "./EmployeesPage/EmployeeTableHead.vue";
 import TableEntry from "./EmployeesPage/EmployeeTableEntry.vue";
-import axios from "axios";
-import { onMounted, ref, watch } from "vue";
 
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
-library.add(faUserPlus);
+import { onMounted } from "vue";
+import { initFlowbite } from "flowbite";
+import { useUserStore } from "@/stores/user";
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { useUserStore } from "@/stores/user";
-import { initFlowbite } from "flowbite";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
+library.add(faUserPlus)
 
 const userStore = useUserStore();
 
 onMounted(() => {
+  console.log("yes")
   initFlowbite();
   userStore.getManyUsers()
 });
+
+function arrayToCsv(data) {
+  const arrayRaw = [Object.keys(data[0])].concat(data)
+
+  return arrayRaw.map(it => {
+    return Object.values(it).toString()
+  }).join('\n')
+}
+
+import { saveAs } from 'file-saver'
+
+
+
+function downloadEmployeesToCsv(content, contentType) {
+  var blob = new Blob([content], { type: contentType })
+  saveAs(blob, 'employees.csv')
+  console.log("s")
+}
 
 </script>
 
@@ -31,6 +49,7 @@ onMounted(() => {
         COPY
       </button>
       <button
+        @click="downloadEmployeesToCsv(arrayToCsv(userStore.state.users), 'text/csv')"
         class="text-xs bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-2 border-solid border-white-500 border-2"
       >
         CSV
@@ -51,7 +70,7 @@ onMounted(() => {
         to="/admin/register"
         class="text-xs bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-2 rounded-lg border-solid border-white-500 border-2"
       >
-        <font-awesome-icon icon="fa-solid fa-user-plus" />
+        <FontAwesomeIcon icon="fa-solid fa-user-plus" />
         New Employee
       </RouterLink>
     </div>

@@ -1,83 +1,54 @@
 <script lang="ts" setup>
 import { ref } from "vue";
-import moment from "moment";
-moment.updateLocale(moment.locale(), { invalidDate: "No Data" });
+import * as fns from 'date-fns'
 const props = defineProps(["attendance"]);
 
-const todayClass = ref("bg-white");
-// bg-emerald-50 border-white
-if (moment().format("YYYY MMMM DD") === moment(props.attendance.recordDate).format("YYYY MM DD")) {
-  todayClass.value = "bg-emerald-50 border-white";
+function formatDateTime(raw: string) {
+  try {
+    const date = new Date(raw);
+  return raw === null ? 'No Data': fns.format(date, 'p');
+  } catch {
+    return "No Data"
+  }
 }
 
-const workHours = ref(props.attendance.hoursWorked);
-
-if (workHours.value > 4) {
-  workHours.value--;
-}
 </script>
 <template>
-  <tr
-    :class="[
-      'border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600',
-      todayClass
-    ]"
-  >
+  <tr>
     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-      {{ props.attendance.user.profile.lastName }}
-      {{ props.attendance.user.profile.firstName }}
-      {{ props.attendance.user.profile.middleName.charAt(0) }}.{{
-        props.attendance.user.profile.suffix
-      }}
+      {{ props.attendance.user.lastName }}
+      {{ props.attendance.user.firstName }}
+      {{ props.attendance.user.middleName }}
     </th>
-    <td class="px-6 py-4">
-      {{ props.attendance.user.profile.department }} |
-      {{ props.attendance.user.profile.employmentType }}
+<td class="px-6 py-4">
+      {{ props.attendance.user.workDepartment }}
     </td>
     <td class="px-6 py-4">
-      {{ moment(props.attendance.recordDate).format("YYYY MMMM DD") }}
+      {{ fns.format(new Date(props.attendance.date), 'PP') }}
     </td>
     <td class="px-6 py-4">
-      {{ moment(props.attendance.timeIn).format("hh:mm A") }}
+      {{ formatDateTime(props.attendance.timeInAm) }}
     </td>
     <td class="px-6 py-4">
-      {{ moment(props.attendance.timeOut).format("hh:mm A") }}
+      {{ formatDateTime(props.attendance.timeOutAm) }}
     </td>
     <td class="px-6 py-4">
-      <span v-if="props.attendance.hoursWorked">{{ workHours }}</span>
-      <span v-else>No Data</span>
+      {{ formatDateTime(props.attendance.timeInPm) }}
     </td>
     <td class="px-6 py-4">
-      <p
+      {{ formatDateTime(props.attendance.timeOutPm) }}
+    </td>
+    <td class="px-6 py-4">
+      <span>{{ props.attendance.hoursWorkedAm }}</span>
+      <span>{{ props.attendance.hoursWorkedPm }}</span>
+    </td>
+    <td class="px-6 py-4">
+      <!-- <p
         v-if="Object.is(props.attendance.timeOut, null) && props.attendance.remark != 'Absent'"
         class="mx-0.5 font-bold inline bg-blue-500 w-10 text-white p-2 rounded-lg text-center"
       >
         ⌛ No Out
-      </p>
-      <p
-        v-if="props.attendance.remark === 'OnTime'"
-        class="mx-0.5 font-bold inline bg-emerald-600 w-10 text-white p-2 rounded-lg text-center"
-      >
-        🕒 On Time
-      </p>
-      <p
-        v-if="props.attendance.remark === 'Late'"
-        class="mx-0.5 font-bold inline bg-orange-500 w-10 text-white p-2 rounded-lg text-center"
-      >
-        ⏰ Late
-      </p>
-      <p
-        v-if="props.attendance.remark === 'Absent'"
-        class="mx-0.5 font-bold inline bg-red-500 w-10 text-white p-2 rounded-lg text-center"
-      >
-        😔 Absent
-      </p>
-      <p
-        v-if="false"
-        class="mx-0.5 inline bg-slate-500 w-10 text-white p-1.5 rounded-lg text-center"
-      >
-        Early Out
-      </p>
+      </p> -->
     </td>
   </tr>
 </template>

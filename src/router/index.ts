@@ -65,6 +65,22 @@ const router = createRouter({
         {
           path: '/admin/employees',
           component: () => import('@/components/Admin/EmployeesPage.vue')
+        },
+        {
+          path: '/admin/attendances',
+          component: () => import('@/components/Admin/AttendancesPage.vue')
+        },
+        {
+          path: '/admin/dashboard',
+          component: () => import('@/components/Admin/DashboardPage.vue')
+        },
+        {
+          path: '/admin/requests',
+          component: () => import('@/components/Admin/RequestsPage.vue')
+        },
+        {
+          path: '/admin/calendar',
+          component: () => import('@/components/Admin/CalendarPage.vue')
         }
       ]   
     }

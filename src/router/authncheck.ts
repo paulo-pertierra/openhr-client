@@ -5,7 +5,7 @@ export function isAuthenticated() {
 
 export function isUser() {
   try {
-    const user = JSON.parse(localStorage.getItem("user"));
+    const user = JSON.parse(localStorage.getItem("credentials"));
     return user.auth.info.role === "USER";
   } catch {
     return false;
@@ -14,7 +14,7 @@ export function isUser() {
 
 export function isAdmin() {
   try {
-    const user = JSON.parse(localStorage.getItem("user"));
+    const user = JSON.parse(localStorage.getItem("credentials"));
     return user.auth.info.role === "ADMIN";
   } catch {
     return false;

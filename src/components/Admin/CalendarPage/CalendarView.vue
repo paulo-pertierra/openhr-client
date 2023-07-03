@@ -5,6 +5,9 @@ import listPlugin from "@fullcalendar/list";
 import interactionPlugin from "@fullcalendar/interaction";
 import axios from "axios";
 
+import { useEventStore } from "@/stores/event";
+const eventStore = useEventStore();
+
 export default {
   components: {
     FullCalendar // make the <FullCalendar> tag available
@@ -30,7 +33,7 @@ export default {
           center: "title",
           right: "dayGridMonth,listDay,listWeek,listMonth"
         },
-        events: []
+        events: async () => eventStore.events
       }
     };
   },
@@ -40,9 +43,7 @@ export default {
     }
   },
   mounted() {
-    axios.get("/events").then((response) => {
-      this.calendarOptions.events = response.data.data;
-    });
+    eventStore.getEvents()
   }
 };
 </script>

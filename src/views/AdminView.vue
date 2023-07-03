@@ -4,34 +4,19 @@ import { initFlowbite } from "flowbite";
 import axios from "axios";
 import router from "../router";
 import { RouterLink, RouterView } from "vue-router";
-const user = JSON.parse(localStorage.getItem("user") || "{}");
 
-const name = ref("");
-const username = ref("");
-const role = ref("");
+import { useCredentials } from "@/stores/auth";
+const credentials = useCredentials()
+const user = credentials.auth.info
 
-axios
-  .get(`/users/${user.id}?profile=true`)
-  .then((res) => {
-    name.value = res.data.profile.lastName + " " + res.data.profile.firstName;
-    username.value = res.data.username;
-    role.value = res.data.role;
-    console.log(res);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+const name = user.profile.lastName + " " + user.profile.firstName;
+const role = user.role;
 
 // initialize components based on data attribute selectors
 onMounted(() => {
   initFlowbite();
 });
 
-// Log Out
-function logOut() {
-  localStorage.removeItem("user");
-  router.push("/");
-}
 </script>
 <template>
   <aside
@@ -87,15 +72,6 @@ function logOut() {
             Calendar
           </a>
         </li>
-        <li>
-          <RouterLink
-            to="/admin/profile"
-            class="flex items-center p-2 text-s text-white hover:bg-gradient-to-l from-grad hover:border-r-8 border-pink-300"
-          >
-            <img src="/profile.svg" class="pr-3" alt="" />
-            Profile
-          </RouterLink>
-        </li>
       </ul>
       <ul class="bottom-10 space-y-2 font-medium mt-20">
         <li>
@@ -108,13 +84,13 @@ function logOut() {
         </li>
 
         <li>
-          <a
-            href="#"
-            class="flex items-center text-s p-2 text-white dark:text-white hover:bg-gradient-to-l from-grad hover:border-r-8 border-pink-300"
+          <button
+            @click="credentials.logOut"
+            class="flex w-full text-s p-2 text-white dark:text-white hover:bg-gradient-to-l from-grad hover:border-r-8 border-pink-300"
           >
             <span class="ml-3 whitespace-nowrap">Logout</span>
             <img src="/logout.svg" class="ml-2" alt="" />
-          </a>
+          </button>
         </li>
       </ul>
     </div>
@@ -148,69 +124,7 @@ function logOut() {
                   ></path>
                 </svg>
               </button>
-            </div>
-            <div class="flex items-center">
-              <div class="flex items-center ml-3">
-                <div>
-                  <button
-                    type="button"
-                    class="flex text-sm bg-blue-500 p-2 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-                    aria-expanded="false"
-                    data-dropdown-toggle="dropdown-user"
-                  >
-                    <span class="sr-only">Open user menu</span>
-                    Account
-                  </button>
-                </div>
-                <div
-                  class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
-                  id="dropdown-user"
-                >
-                  <div class="px-3 py-3" role="none">
-                    <p class="text-xs text-gray-900 dark:text-white" role="none">{{ name }}</p>
-                    <p
-                      class="text-xs font-medium text-gray-900 truncate dark:text-gray-300"
-                      role="none"
-                    >
-                      {{ username }} | {{ role }}
-                    </p>
-                  </div>
-                  <ul class="py-1" role="none">
-                    <li>
-                      <a
-                        href="#"
-                        class="block px-4 py-2 text-xs text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                        role="menuitem"
-                        >Dashboard</a
-                      >
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        class="block px-4 py-2 text-xs text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                        role="menuitem"
-                        >Settings</a
-                      >
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        class="block px-4 py-2 text-xs text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                        role="menuitem"
-                        >Earnings</a
-                      >
-                    </li>
-                    <li>
-                      <a
-                        @click="logOut()"
-                        class="cursor-pointer block px-4 py-2 text-xs text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                        role="menuitem"
-                        >Sign out</a
-                      >
-                    </li>
-                  </ul>
-                </div>
-              </div>
+              <h1 class="hidden sm:block text-3xl pl-4 text-slate-700 font-bold">Dashboard</h1>
             </div>
           </div>
         </div>

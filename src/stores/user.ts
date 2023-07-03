@@ -13,6 +13,9 @@ export const useUserStore = defineStore('user', () => {
     .then((res) => {
       state.users = res.data.data
     })
+    .catch((error) => {
+      console.error(error)
+    })
   }
 
   return { state, getManyUsers }

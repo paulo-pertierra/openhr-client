@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import router from "@/router";
 
 export const useCredentials = defineStore(
-  "user",
+  "credentials",
   () => {
     const auth = reactive({
       info: {
@@ -20,7 +20,13 @@ export const useCredentials = defineStore(
         }
       }
     });
-    return { auth };
+    
+    async function logOut() {
+      auth.info = {};
+      await localStorage.removeItem("user");
+      router.push("/")
+    }
+    return { auth, logOut };
   },
   { persist: true }
 );
@@ -29,7 +35,7 @@ export const useUserAuthStore = defineStore("userAuthn", () => {
   const user = useCredentials();
   function logInUser({ username, password }) {
     axios
-      .post( "http://192.168.100.4:5000" +"/auth/user/login", { username, password })
+      .post( import.meta.env.VITE_BASE_URL +"/auth/user/login", { username, password })
       .then((res) => {
         user.auth.info = res.data.data;
         router.push("/user");
@@ -38,17 +44,15 @@ export const useUserAuthStore = defineStore("userAuthn", () => {
         Swal.fire("Cant Log In", "Username or password incorrect.", "warning");
       });
   }
-  function logOutUser() {
-    localStorage.removeItem("user");
-  }
-  return { logInUser, logOutUser };
+
+  return { logInUser };
 });
 
 export const useAdminAuthStore = defineStore("adminAuthn", () => {
   const user = useCredentials();
   function logInAdmin({ username, password }) {
     axios
-      .post("http://192.168.100.4:5000"+"/auth/admin/login", { username, password })
+      .post(import.meta.env.VITE_BASE_URL + "/auth/admin/login", { username, password })
       .then((res) => {
         user.auth.info = res.data.data;
         router.push("/admin");
@@ -57,9 +61,6 @@ export const useAdminAuthStore = defineStore("adminAuthn", () => {
         Swal.fire("Cant Log In", "Username or password incorrect.", "warning");
       });
   }
-  function logOutAdmin() {
-    localStorage.removeItem("user");
-  }
 
-  return { logInAdmin, logOutAdmin };
+  return { logInAdmin };
 });
