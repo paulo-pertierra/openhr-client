@@ -64,7 +64,11 @@ const router = createRouter({
       children: [
         {
           path: '/admin/employees',
-          component: () => import('@/components/Admin/EmployeesPage.vue')
+          component: () => import('@/components/Admin/EmployeesPage.vue'),
+        },
+        {
+          path: "/admin/register",
+          component: () => import('@/components/Admin/RegisterEmployeePage.vue')
         },
         {
           path: '/admin/attendances',

@@ -5,6 +5,6 @@ import CalendarEventControls from "./CalendarPage/CalendarEventControls.vue";
 <template>
   <div class="grid grid-cols-6 gap-10">
     <CalendarView class="lg:col-span-4 w-full col-span-6" />
-    <CalendarEventControls />
+    <CalendarEventControls class="col-span-2" />
   </div>
 </template>

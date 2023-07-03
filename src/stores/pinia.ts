@@ -103,32 +103,3 @@ export const useEmployeeTableSorterStore = defineStore("employeeTableSorter", ()
   }
   return { by, order, setSorter };
 });
-
-export const useEventStore = defineStore("event", () => {
-  type Event = {
-    title: string;
-    description: string;
-    start: string;
-    end: string | undefined;
-    allDay: boolean;
-  };
-  const event: Event = reactive({
-    title: "",
-    description: "",
-    start: "",
-    end: "",
-    allDay: false
-  });
-  function createEvent() {
-    axios
-      .post("/events", event)
-      .then(() => {
-        Swal.fire("Success!", "Event successfully created.", "success");
-      })
-      .catch((error) => {
-        Swal.fire("Failed", "Failed to create event.", "error");
-        console.error(error);
-      });
-  }
-  return { event, createEvent };
-});

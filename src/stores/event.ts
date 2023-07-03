@@ -1,6 +1,7 @@
 import axios from "axios";
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import Swal from "sweetalert2";
+import { reactive, ref } from "vue";
 
 export const useEventStore = defineStore('events', () => {
   const events = ref([])
@@ -17,5 +18,25 @@ export const useEventStore = defineStore('events', () => {
       })
   }
 
-  return { getEvents, events }
+  const newEvent = reactive({
+    title: "",
+    description: "",
+    start: "",
+    end: "",
+    allDay: false,
+    userUuid: ""
+  })
+
+  function createNewEvent() {
+    axios
+      .post('/events', {newEvent})
+      .then((res) => {
+        console.log(res.status)
+      })
+      .catch((error) => {
+        console.log(error)
+        Swal.fire("Failed")
+      })
+  }
+  return { getEvents, events, newEvent, createNewEvent }
 })

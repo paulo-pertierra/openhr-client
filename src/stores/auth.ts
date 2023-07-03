@@ -4,7 +4,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import router from "@/router";
 
-export const useCredentials = defineStore(
+export const useCredentialsStore = defineStore(
   "credentials",
   () => {
     const auth = reactive({
@@ -32,7 +32,7 @@ export const useCredentials = defineStore(
 );
 
 export const useUserAuthStore = defineStore("userAuthn", () => {
-  const user = useCredentials();
+  const user = useCredentialsStore();
   function logInUser({ username, password }) {
     axios
       .post( import.meta.env.VITE_BASE_URL +"/auth/user/login", { username, password })
@@ -49,7 +49,7 @@ export const useUserAuthStore = defineStore("userAuthn", () => {
 });
 
 export const useAdminAuthStore = defineStore("adminAuthn", () => {
-  const user = useCredentials();
+  const user = useCredentialsStore();
   function logInAdmin({ username, password }) {
     axios
       .post(import.meta.env.VITE_BASE_URL + "/auth/admin/login", { username, password })

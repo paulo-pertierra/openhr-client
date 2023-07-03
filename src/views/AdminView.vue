@@ -5,8 +5,8 @@ import axios from "axios";
 import router from "../router";
 import { RouterLink, RouterView } from "vue-router";
 
-import { useCredentials } from "@/stores/auth";
-const credentials = useCredentials()
+import { useCredentialsStore } from "@/stores/auth";
+const credentials = useCredentialsStore()
 const user = credentials.auth.info
 
 const name = user.profile.lastName + " " + user.profile.firstName;
