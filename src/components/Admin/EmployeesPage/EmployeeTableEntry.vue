@@ -17,7 +17,7 @@ const user = useUserStore();
 
 onMounted(() => {
   initFlowbite();
-})
+});
 </script>
 <template>
   <tr
@@ -27,7 +27,7 @@ onMounted(() => {
       <RouterLink :to="'/admin/employees/' + props.user.uuid">
         {{ props.user.lastName }},
         {{ props.user.firstName }}
-        {{ props.user.middleName as string || '' }}
+        {{ (props.user.middleName as string) || "" }}
       </RouterLink>
     </th>
     <td class="px-6 py-4">

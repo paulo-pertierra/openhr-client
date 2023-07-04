@@ -3,7 +3,6 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-
 const props = defineProps(["id"]);
 function deleteEmployee() {
   axios

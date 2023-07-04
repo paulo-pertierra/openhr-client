@@ -6,18 +6,18 @@ import { initFlowbite } from "flowbite";
 import Swal from "sweetalert2";
 import router from "@/router";
 
-const ran = ref(false)
+const ran = ref(false);
 const serverStatusRunning = ref(200);
 function checkServerStatus() {
   axios
-    .get(`${ 'http://192.168.100.39:5000' }/ping`)
+    .get(`${"http://192.168.100.39:5000"}/ping`)
     .then((res) => {
-      serverStatusRunning.value = res.status
-      ran.value = false
+      serverStatusRunning.value = res.status;
+      ran.value = false;
     })
     .catch((error) => {
       if (error.code === "ERR_NETWORK") {
-        serverStatusRunning.value = 0
+        serverStatusRunning.value = 0;
       }
     });
 }
@@ -28,8 +28,8 @@ onMounted(() => {
 
 onUpdated(() => {
   checkServerStatus();
-  console.log('state changed')
-})
+  console.log("state changed");
+});
 </script>
 <template>
   <RouterView v-if="serverStatusRunning !== 0" />

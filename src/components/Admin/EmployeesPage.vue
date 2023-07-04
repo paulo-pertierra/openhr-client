@@ -9,34 +9,33 @@ import { useUserStore } from "@/stores/user";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
-library.add(faUserPlus)
+library.add(faUserPlus);
 
 const userStore = useUserStore();
 
 onMounted(() => {
-  console.log("yes")
+  console.log("yes");
   initFlowbite();
-  userStore.getManyUsers()
+  userStore.getManyUsers();
 });
 
 function arrayToCsv(data) {
-  const arrayRaw = [Object.keys(data[0])].concat(data)
+  const arrayRaw = [Object.keys(data[0])].concat(data);
 
-  return arrayRaw.map(it => {
-    return Object.values(it).toString()
-  }).join('\n')
+  return arrayRaw
+    .map((it) => {
+      return Object.values(it).toString();
+    })
+    .join("\n");
 }
 
-import { saveAs } from 'file-saver'
-
-
+import { saveAs } from "file-saver";
 
 function downloadEmployeesToCsv(content, contentType) {
-  var blob = new Blob([content], { type: contentType })
-  saveAs(blob, 'employees.csv')
-  console.log("s")
+  var blob = new Blob([content], { type: contentType });
+  saveAs(blob, "employees.csv");
+  console.log("s");
 }
-
 </script>
 
 <template>

@@ -20,11 +20,11 @@ export const useCredentialsStore = defineStore(
         }
       }
     });
-    
+
     async function logOut() {
       auth.info = {};
       await localStorage.removeItem("user");
-      router.push("/")
+      router.push("/");
     }
     return { auth, logOut };
   },
@@ -35,7 +35,7 @@ export const useUserAuthStore = defineStore("userAuthn", () => {
   const user = useCredentialsStore();
   function logInUser({ username, password }) {
     axios
-      .post( import.meta.env.VITE_BASE_URL +"/auth/user/login", { username, password })
+      .post(import.meta.env.VITE_BASE_URL + "/auth/user/login", { username, password })
       .then((res) => {
         user.auth.info = res.data.data;
         router.push("/user");

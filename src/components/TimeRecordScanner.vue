@@ -18,7 +18,7 @@ function onDecode(scannedString: string) {
     return;
   }
 
-  axios.post(`/time/in/${scannedString}`).then((res) => {
+  axios.post(`/times/${scannedString}`).then((res) => {
     if (res.status === 200) {
       Swal.fire({
         icon: "success",
@@ -27,21 +27,6 @@ function onDecode(scannedString: string) {
         timer: 1500,
         showCancelButton: false,
         showConfirmButton: false
-      });
-      return;
-    }
-    if (res.status === 202) {
-      axios.post(`/time/out/${scannedString}`).then((res) => {
-        if (res.status === 200) {
-          Swal.fire({
-            icon: "success",
-            title: "Success!",
-            text: "You timed out successfully.",
-            timer: 1500,
-            showCancelButton: false,
-            showConfirmButton: false
-          });
-        }
       });
       return;
     }

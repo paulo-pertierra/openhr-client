@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { reactive } from "vue";
 
-export const useNewEmployeeDetailsStore = defineStore ('newEmployeeDetails', () => {
+export const useNewEmployeeDetailsStore = defineStore("newEmployeeDetails", () => {
   const employee = reactive({
     lastName: "", // Step 1
     firstName: "",
@@ -30,5 +30,5 @@ export const useNewEmployeeDetailsStore = defineStore ('newEmployeeDetails', () 
     workHireDate: ""
 
     // Step 5: Generate username and password, upload.
-  })
-})
+  });
+});

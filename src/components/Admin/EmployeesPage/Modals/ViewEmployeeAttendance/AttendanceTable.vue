@@ -6,7 +6,7 @@ import AttendanceTableEntry from "./AttendanceTable/AttendanceTableEntry.vue";
 import { initFlowbite } from "flowbite";
 import { onMounted } from "vue";
 
-// initialize components based on data attribute 
+// initialize components based on data attribute
 const attendances = reactive({
   state: []
 });
@@ -14,16 +14,17 @@ const props = defineProps(["userId"]);
 
 onMounted(() => {
   axios
-  .get(`/times/user/${props.userId}`)
-  .then((res) => {
-    attendances.state = res.data.data;
-    console.log('working')
-  })
-  .catch(() => {
-    console.log("error");
-  }).finally(()=> {
-    console.log(attendances.state)
-  });
+    .get(`/times/user/${props.userId}`)
+    .then((res) => {
+      attendances.state = res.data.data;
+      console.log("working");
+    })
+    .catch(() => {
+      console.log("error");
+    })
+    .finally(() => {
+      console.log(attendances.state);
+    });
 });
 </script>
 

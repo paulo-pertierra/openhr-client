@@ -5,14 +5,17 @@ import "@vuepic/vue-datepicker/dist/main.css";
 import { useEventStore } from "@/stores/event";
 
 const eventStore = useEventStore();
-
 </script>
 
 <template>
-  <div class="lg:col-span-2 w-full border border-black rounded-lg  bg-gray-900 col-span-6 h-[80%] p-5 ">
+  <div
+    class="lg:col-span-2 w-full border border-black rounded-lg bg-gray-900 col-span-6 h-[80%] p-5"
+  >
     <h1 class="p-4 text-2xl font-bold text-center text-white">Create an Event</h1>
     <div>
-      <label for="firstname" class="block mb-2 text-sm font-medium text-center text-white dark:text-white"
+      <label
+        for="firstname"
+        class="block mb-2 text-sm font-medium text-center text-white dark:text-white"
         >Event Title</label
       >
 
@@ -26,7 +29,9 @@ const eventStore = useEventStore();
           placeholder="Aa"
           required
         />
-        <label for="firstname" class="block mt-2 mb-2 text-sm font-medium text-white dark:text-white"
+        <label
+          for="firstname"
+          class="block mt-2 mb-2 text-sm font-medium text-white dark:text-white"
           >Event Description</label
         >
         <input
@@ -57,10 +62,10 @@ const eventStore = useEventStore();
           </div>
           <div>
             <label
-            for="hiring-date"
-            class="block mx-auto mt-2 mb-2 text-sm font-medium text-white dark:text-white"
-            >All Day</label
-          >
+              for="hiring-date"
+              class="block mx-auto mt-2 mb-2 text-sm font-medium text-white dark:text-white"
+              >All Day</label
+            >
             <select class="rounded-lg" name="allday" id="" v-model="eventStore.newEvent.allDay">
               <option value="true">Yes</option>
               <option value="false">No</option>

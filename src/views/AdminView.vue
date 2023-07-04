@@ -6,8 +6,8 @@ import router from "../router";
 import { RouterLink, RouterView } from "vue-router";
 
 import { useCredentialsStore } from "@/stores/auth";
-const credentials = useCredentialsStore()
-const user = credentials.auth.info
+const credentials = useCredentialsStore();
+const user = credentials.auth.info;
 
 const name = user.profile.lastName + " " + user.profile.firstName;
 const role = user.role;
@@ -15,8 +15,13 @@ const role = user.role;
 // initialize components based on data attribute selectors
 onMounted(() => {
   initFlowbite();
+  try {
+    const credentials = useCredentialsStore();
+    axios.defaults.headers.common = { Authorization: `Bearer ${credentials.auth.info.jwt}` };
+  } catch (error) {
+    console.error(error);
+  }
 });
-
 </script>
 <template>
   <aside

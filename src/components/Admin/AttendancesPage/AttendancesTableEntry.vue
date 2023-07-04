@@ -1,17 +1,16 @@
 <script lang="ts" setup>
 import { ref } from "vue";
-import * as fns from 'date-fns'
+import * as fns from "date-fns";
 const props = defineProps(["attendance"]);
 
 function formatDateTime(raw: string) {
   try {
     const date = new Date(raw);
-  return raw === null ? 'No Data': fns.format(date, 'p');
+    return raw === null ? "No Data" : fns.format(date, "p");
   } catch {
-    return "No Data"
+    return "No Data";
   }
 }
-
 </script>
 <template>
   <tr>
@@ -20,11 +19,11 @@ function formatDateTime(raw: string) {
       {{ props.attendance.user.firstName }}
       {{ props.attendance.user.middleName }}
     </th>
-<td class="px-6 py-4">
+    <td class="px-6 py-4">
       {{ props.attendance.user.workDepartment }}
     </td>
     <td class="px-6 py-4">
-      {{ fns.format(new Date(props.attendance.date), 'PP') }}
+      {{ fns.format(new Date(props.attendance.date), "PP") }}
     </td>
     <td class="px-6 py-4">
       {{ formatDateTime(props.attendance.timeInAm) }}
