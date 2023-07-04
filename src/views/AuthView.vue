@@ -10,7 +10,7 @@ import { RouterView } from "vue-router";
       >
         <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
           <h1
-            class="text-center text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
+            class="text-xl font-bold leading-tight tracking-tight text-center text-gray-900 md:text-2xl dark:text-white"
           >
             <a href="#" class="mx-auto text-2xl font-semibold text-gray-900 dark:text-white">
               <img class="w-20 h-20 mx-auto mb-10 sm:mb-5" src="/logo.png" alt="logo" />
