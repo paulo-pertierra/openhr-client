@@ -67,8 +67,8 @@ const eventStore = useEventStore();
               >All Day</label
             >
             <select class="rounded-lg" name="allday" id="" v-model="eventStore.newEvent.allDay">
-              <option value="true">Yes</option>
-              <option value="false">No</option>
+              <option :value="true">Yes</option>
+              <option :value="false">No</option>
             </select>
           </div>
           <button
@@ -77,6 +77,7 @@ const eventStore = useEventStore();
           >
             Submit
           </button>
+          {{ eventStore.newEvent }}
         </div>
       </div>
     </div>

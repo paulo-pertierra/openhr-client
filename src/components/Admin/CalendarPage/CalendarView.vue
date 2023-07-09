@@ -6,6 +6,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import axios from "axios";
 
 import { useEventStore } from "@/stores/event";
+import router from "@/router";
 const eventStore = useEventStore();
 
 export default {
@@ -33,7 +34,10 @@ export default {
           center: "title",
           right: "dayGridMonth,listDay,listWeek,listMonth"
         },
-        events: async () => eventStore.events
+        events: async function() {
+          return eventStore.events
+          
+        }
       }
     };
   },
@@ -44,6 +48,8 @@ export default {
   },
   mounted() {
     eventStore.getEvents();
+    let calendarApi = this.$refs.fullCalendar.getApi()
+    calendarApi.rerenderEvents()
   }
 };
 </script>
@@ -57,6 +63,6 @@ export default {
 
 <template>
   <div>
-    <FullCalendar :options="calendarOptions" />
+    <FullCalendar ref="fullCalendar" :options="calendarOptions" />
   </div>
 </template>

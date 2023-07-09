@@ -22,19 +22,19 @@ export const useEventStore = defineStore("events", () => {
     title: "",
     description: "",
     start: "",
-    end: "",
+    end: null,
     allDay: false,
-    userUuid: ""
+    userUuid: null
   });
 
   function createNewEvent() {
     axios
-      .post("/events", { newEvent })
+      .post("/events", newEvent)
       .then((res) => {
-        console.log(res.status);
+        console.log(res);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         Swal.fire("Failed");
       });
   }

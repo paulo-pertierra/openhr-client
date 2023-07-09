@@ -23,6 +23,7 @@ onMounted(() => {
   }
 });
 </script>
+
 <template>
   <aside
     id="sidebar"
