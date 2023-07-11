@@ -39,9 +39,10 @@ export const useUserStore = defineStore("user", () => {
   return { users, getManyUsers, getfilteredManyUsers, getSortedManyUsersBy };
 });
 
-import generator from "generate-password";
 import { reactive } from "vue";
 import Swal from "sweetalert2";
+
+import { useCredentialsStore } from "@/stores/auth";
 export const useNewUserStore = defineStore("newUser", () => {
 
   const isGeneratedCredentials = ref(false);
@@ -99,6 +100,9 @@ export const useNewUserStore = defineStore("newUser", () => {
              <p>Copied to clipboard!</p>`,
       icon: "info"
     })
+    navigator.clipboard.writeText(
+      "Username: " + newUser.username + "\nPassword: " + newUser.password
+    );
     isGeneratedCredentials.value = true;
   }
 
@@ -120,3 +124,49 @@ export const useNewUserStore = defineStore("newUser", () => {
 
   return { newUser, generateNewUserCredentials, createNewUser, isGeneratedCredentials };
 });
+
+export const useCurrentUserProfileStore = defineStore("currentUserProfile", () => {
+  const user = ref({
+    lastName: "",
+    firstName: "",
+    middleName: "",
+
+    contactEmail: "",
+    contactNumber: "",
+
+    profileGender: "",
+    profileBirthday: "",
+    profileCivilStatus: "",
+    profileNationality: "",
+    profileAddress: "",
+
+    educationLevel: "",
+    educationCourse: "",
+    educationYearStart: "",
+    educationYearGraduate: "",
+    educationSchool: "",
+
+    workRole: "",
+    workDepartment: "",
+    workTitle: "",
+    workCode: "",
+    workEmploymentType: "",
+    workHireDate: "",
+    training: [],
+    emergencyContact: []
+  })
+
+  const credentials = useCredentialsStore();
+  function getCurrentUserProfileByUuid() {
+    axios
+      .get(`/users/${ credentials.auth.info.uuid }`)
+      .then((res) => {
+        user.value = res.data.data
+      })
+      .catch((error) => {
+        Swal.fire("Warning", "Unable to fetch user profile.", "warning");
+        console.error(error)
+      })
+  }
+  return { user, getCurrentUserProfileByUuid }
+})

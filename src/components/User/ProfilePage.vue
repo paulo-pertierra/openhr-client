@@ -1,16 +1,30 @@
+<script lang="ts" setup>
+import { useCurrentUserProfileStore } from '@/stores/user';
+import { onMounted, ref } from 'vue';
+import { formatISOToReadable } from '@/utilities/time';
+
+const currentUserProfileStore = useCurrentUserProfileStore();
+onMounted(() => {
+  currentUserProfileStore.getCurrentUserProfileByUuid();
+})
+
+</script>
+
 <template>
   <div>
     <div class="m-2 items-center p-4 sm:flex sm:p-8">
       <img
-        src="https://wallpapers.com/images/featured/87h46gcobjl5e4xu.jpg"
+        :src="'https://placehold.co/40?text=' + currentUserProfileStore.user.firstName.charAt(0) + currentUserProfileStore.user.lastName.charAt(0)"
         class="mx-auto h-20 w-auto rounded-full transition-all sm:m-0 sm:h-32"
         alt=""
       />
       <div>
         <h1 class="p-2 text-center text-2xl transition-all sm:text-left sm:text-4xl">
-          Calbona, Daryll Yort D.
+          {{ currentUserProfileStore.user.lastName 
+                 + ", " + currentUserProfileStore.user.firstName + " " 
+                 + (currentUserProfileStore.user.middleName as string).charAt(0) + "." }}
         </h1>
-        <h3 class="p-0 text-center sm:p-2 sm:text-left">Junior Developer</h3>
+        <h3 class="p-0 text-center sm:p-2 sm:text-left">{{ currentUserProfileStore.user.workTitle }}</h3>
       </div>
     </div>
     <div class="m-2 md:m-8 rounded-[3rem] border-2 border-solid border-purple-200">
@@ -21,23 +35,23 @@
           <table class="text-left">
             <tr>
               <th class="px-4">Gender Preference:</th>
-              <td>Male</td>
+              <td>{{ currentUserProfileStore.user.profileGender }}</td>
             </tr>
             <tr>
               <th class="px-4">Birthday:</th>
-              <td>02 Mar 2000</td>
+              <td>{{ formatISOToReadable(currentUserProfileStore.user.profileBirthday, 'PP') }}</td>
             </tr>
             <tr>
               <th class="px-4">Civil Status:</th>
-              <td>Single</td>
+              <td>{{ currentUserProfileStore.user.profileCivilStatus }}</td>
             </tr>
             <tr>
               <th class="px-4">Nationality:</th>
-              <td>Filipino</td>
+              <td>{{ currentUserProfileStore.user.profileNationality }}</td>
             </tr>
             <tr>
-              <th class="px-4">Nationality:</th>
-              <td>143 Calbona Subd., Calbona, Laguna</td>
+              <th class="px-4">Address:</th>
+              <td>{{ currentUserProfileStore.user.profileAddress }}</td>
             </tr>
           </table>
         </div>
@@ -46,23 +60,23 @@
           <table class="text-left">
             <tr>
               <th class="px-4">Educational Level:</th>
-              <td>College</td>
+              <td>{{ currentUserProfileStore.user.educationLevel }}</td>
             </tr>
             <tr>
               <th class="px-4">Course/Strand:</th>
-              <td>Death Stranding</td>
+              <td>{{ currentUserProfileStore.user.educationCourse }}</td>
             </tr>
             <tr>
               <th class="px-4">Year Started:</th>
-              <td>2019</td>
+              <td>{{ currentUserProfileStore.user.educationYearStart }}</td>
             </tr>
             <tr>
               <th class="px-4">Year Graduated:</th>
-              <td>2049</td>
+              <td>{{ currentUserProfileStore.user.educationYearGraduate }}</td>
             </tr>
             <tr>
               <th class="px-4">School:</th>
-              <td>Universidad de Calbona</td>
+              <td>{{ currentUserProfileStore.user.educationSchool }}</td>
             </tr>
           </table>
         </div>
@@ -76,19 +90,19 @@
           <table class="text-left">
             <tr>
               <th class="px-4">Department:</th>
-              <td>WEBDEV</td>
+              <td>{{ currentUserProfileStore.user.workDepartment }}</td>
             </tr>
             <tr>
               <th class="px-4">Job Title:</th>
-              <td>Backend Developer</td>
+              <td>{{ currentUserProfileStore.user.workTitle }}</td>
             </tr>
             <tr>
               <th class="px-4">Job Code:</th>
-              <td>C-102</td>
+              <td>{{ currentUserProfileStore.user.workCode }}</td>
             </tr>
             <tr>
               <th class="px-4">Salary Grade:</th>
-              <td>22</td>
+              <td>Feature: TBA</td>
             </tr>
             <tr>
               <th class="px-4">Expected Regularization Date:</th>
@@ -96,7 +110,7 @@
             </tr>
             <tr>
               <th class="px-4">Immediate Supervisor:</th>
-              <td>Toni Fowler</td>
+              <td>Feature: TBA</td>
             </tr>
             <tr>
               <th class="px-4">Biometric ID:</th>
@@ -104,7 +118,7 @@
             </tr>
           </table>
         </div>
-        <div class="col-span-1">
+        <!-- <div class="col-span-1">
           <h3 class="py-2 text-2xl">Government Information</h3>
           <table class="text-left">
             <tr>
@@ -132,9 +146,9 @@
               <td>Di Makalipad</td>
             </tr>
           </table>
-        </div>
+        </div> -->
       </div>
-      <h2 class="p-4 text-center text-3xl font-semibold text-purple-950">
+      <!-- <h2 class="p-4 text-center text-3xl font-semibold text-purple-950">
         Trainings/Seminars Information
       </h2>
       <div class="grid grid-cols-1 p-4 font-semibold lg:grid-cols-2">
@@ -189,8 +203,8 @@
           </table>
         </div>
       </div>
-      <h2 class="p-4 text-center text-3xl font-semibold text-purple-950">Emergency КОНТАКТ</h2>
-      <div class="grid grid-cols-1 p-4 font-semibold lg:grid-cols-2">
+      <h2 class="p-4 text-center text-3xl font-semibold text-purple-950">Emergency Contact</h2> -->
+      <!-- <div class="grid grid-cols-1 p-4 font-semibold lg:grid-cols-2">
         <div class="col-span-1">
           <h3 class="py-2 text-2xl">Contact Person</h3>
           <table class="text-left">
@@ -275,7 +289,7 @@
             </tr>
           </table>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>

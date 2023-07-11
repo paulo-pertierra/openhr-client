@@ -1,3 +1,4 @@
+import router from "@/router";
 import { useCredentialsStore } from "@/stores/auth";
 import axios from "axios";
 import { defineStore } from "pinia";
@@ -18,7 +19,19 @@ export const useScheduleStore = defineStore("schedules", () => {
       });
   }
 
-  return { getSchedules, schedules };
+  function answerScheduleById(Id: string, answer: string) {
+    axios
+      .put(`/schedules/${Id}?status=${answer}`)
+      .then(() => {
+        Swal.fire("Success", `Schedule ${ answer.toLowerCase() }.`, "success");
+      })
+      .catch(() => {
+        Swal.fire("Failed", "Could not update schedule.", "error")
+      })
+    setTimeout(() => router.go(), 1500)
+  }
+
+  return { getSchedules, schedules, answerScheduleById };
 });
 
 export const useUserScheduleStore = defineStore("userSchedules", () => {
