@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import RequestsTableHeader from "./RequestsPage/RequestsTableHeader.vue";
 import RequestsTableEntry from "./RequestsPage/RequestsTableEntry.vue";
-import AddRequest from "../Admin/RequestsPage/AddRequest.vue";
+import AddRequest from "../User/RequestsPage/AddRequest.vue";
 
 import { initFlowbite } from "flowbite";
 import { onMounted } from "vue";

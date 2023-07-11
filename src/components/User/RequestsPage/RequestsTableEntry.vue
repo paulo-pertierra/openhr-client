@@ -17,12 +17,8 @@ const props = defineProps(["schedule"]);
     <td class="px-6 py-4 overflow-auto">
       {{ props.schedule.description }}
     </td>
-    <td class="px-6 py-4">
-      {{}}
-    </td>
-    <td class="px-6 py-4">
-      {{}}
-    </td>
+    <td class="px-6 py-4">{{}}</td>
+    <td class="px-6 py-4">{{}}</td>
     <td class="px-6 py-4">{{ props.schedule.status }}</td>
   </tr>
 </template>
