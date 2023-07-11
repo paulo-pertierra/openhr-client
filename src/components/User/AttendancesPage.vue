@@ -4,18 +4,17 @@ import AttendancesTableHead from "./AttendancesPage/AttendancesTableHead.vue";
 import AttendancesTableEntry from "./AttendancesPage/AttendancesTableEntry.vue";
 import axios from "axios";
 
-const user = reactive(JSON.parse(localStorage.getItem("user") || "{}"));
-console.log(user);
-
+import { useCredentialsStore } from "@/stores/auth";
+const credentials = useCredentialsStore();
 const attendances = ref([]);
-axios.get(`/time/${user.id}`).then((res) => {
-  attendances.value = res.data;
+axios.get(`/times/user/${credentials.auth.info.uuid}`).then((res) => {
+  attendances.value = res.data.data;
 });
 </script>
 <template>
   <p class="text-gray-700 text-3xl text-center my-5 font-extrabold">Attendances</p>
   <div class="grid grid-cols-6 w-full gap-4">
-    <div class="col-span-4">
+    <div class="col-span-6">
       <div class="flex">
         <div>
           <button
@@ -40,8 +39,7 @@ axios.get(`/time/${user.id}`).then((res) => {
           </button>
         </div>
       </div>
-
-      <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <div class="cols-6 relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <AttendancesTableHead />
           <tbody>
@@ -52,11 +50,6 @@ axios.get(`/time/${user.id}`).then((res) => {
             />
           </tbody>
         </table>
-      </div>
-    </div>
-    <div class="col-span-2">
-      <div class="h-96 border-2 border-gray-800">
-        <span>Calendar Here</span>
       </div>
     </div>
   </div>

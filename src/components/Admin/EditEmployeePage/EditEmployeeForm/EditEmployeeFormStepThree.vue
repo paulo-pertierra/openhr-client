@@ -8,21 +8,6 @@ import "@vuepic/vue-datepicker/dist/main.css";
 
 <template>
   <div class="space-y-4 md:space-y-6">
-    <div>
-      <label for="role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-        >Role</label
-      >
-      <select
-        v-model="employee.data.user.role"
-        name="roles"
-        id="roles"
-        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-      >
-        <option value="ADMIN">ADMIN</option>
-        <option value="EMPLOYEE" selected>EMPLOYEE</option>
-        <option value="INTERN">INTERN</option>
-      </select>
-    </div>
     <div class="grid grid-cols-2 gap-2">
       <div>
         <label for="department" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -62,7 +47,9 @@ import "@vuepic/vue-datepicker/dist/main.css";
         </select>
       </div>
       <div class="col-span-2">
-        <label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        <label
+          for="hiring-date"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >Hiring Date</label
         >
         <VueDatePicker v-model="employee.data.profile.hireDate"></VueDatePicker>

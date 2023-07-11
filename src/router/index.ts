@@ -1,32 +1,9 @@
+import AdminLogin from "@/components/Auth/AdminLogin.vue";
+import UserLogin from "@/components/Auth/UserLogin.vue";
+import AuthView from "@/views/AuthView.vue";
 import { createRouter, createWebHistory } from "vue-router";
-
-const identifyAdmin = async () => {
-  const localstore = localStorage.getItem("user");
-  if (localstore) {
-    const data = JSON.parse(localstore || "{}");
-    return data.role === "ADMIN" ? true : "/auth/login";
-  }
-  return "/auth/login";
-};
-
-const identifyUser = async () => {
-  const localstore = localStorage.getItem("user");
-  if (localstore) {
-    const data = JSON.parse(localstore || "{}");
-    return data.role === "EMPLOYEE" || data.role === "INTERN" ? true : "/auth/login";
-  }
-  return "/auth/login";
-};
-
-const userLoggedOut = async () => {
-  const localstore = localStorage.getItem("user");
-  if (localstore) {
-    const data = JSON.parse(localstore || "{}");
-    const role: string = data.role;
-    if (role === "EMPLOYEE" || role === "INTERN") return "/user/dashboard";
-    else return "/admin/dashboard";
-  }
-};
+import { isAuthenticated, isAdmin, isUser } from "./authncheck";
+import Swal from "sweetalert2";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -34,97 +11,102 @@ const router = createRouter({
     {
       path: "/",
       name: "home",
-      redirect: () => {
-        return {
-          path: "/auth"
-        };
+      beforeEnter: () => {
+        if (isUser()) return { path: "/user" };
+        if (isAdmin()) return { path: "/admin" };
+        return { path: "/auth" };
       }
-    },
-    {
-      path: "/huh",
-      component: () => import("../views/DELETEDesignView.vue")
     },
     {
       path: "/auth",
       name: "auth",
-      redirect: () => {
-        return "/auth/login";
+      beforeEnter: () => {
+        if (isUser()) return { path: "/user" };
+        if (isAdmin()) return { path: "/admin" };
       },
-      component: () => import("../views/AuthView.vue"),
+      redirect: "/auth/user",
+      component: () => AuthView,
       children: [
         {
-          path: "login",
-          component: () => import("../components/Auth/LoginPage.vue")
+          path: "user",
+          component: () => UserLogin
         },
         {
-          path: "signup",
-          component: () => import("../components/Auth/SignupPage.vue")
-        }
-      ],
-      beforeEnter: userLoggedOut
-    },
-    {
-      path: "/admin",
-      redirect: () => "/admin/dashboard",
-      component: () => import("../views/AdminView.vue"),
-      children: [
-        {
-          path: "dashboard",
-          component: () => import("../components/Admin/DashboardPage.vue")
-        },
-        {
-          path: "attendances",
-          component: () => import("../components/Admin/AttendancesPage.vue")
-        },
-        {
-          path: "employees",
-          component: () => import("../components/Admin/EmployeesPage.vue")
-        },
-        {
-          path: "employees/:id",
-          component: () => import("../components/Admin/EmployeeProfilePage.vue")
-        },
-        {
-          path: "register",
-          component: () => import("../components/Admin/RegisterEmployeePage.vue")
-        },
-        {
-          path: "employees/edit",
-          component: () => import("../components/Admin/EditEmployeePage.vue")
-        },
-        {
-          path: "requests",
-          component: () => import("../components/Admin/RequestsPage.vue")
-        },
-        {
-          path: "profile",
-          component: () => import("../components/Admin/MyProfilePage.vue")
-        }
-      ],
-      beforeEnter: identifyAdmin
-    },
-    {
-      path: "/user",
-      component: () => import("../views/UserView.vue"),
-      beforeEnter: identifyUser,
-      children: [
-        {
-          path: "dashboard",
-          component: () => import("../components/User/DashboardPage.vue")
-        },
-        {
-          path: "attendance",
-          component: () => import("../components/User/AttendancesPage.vue")
-        },
-        {
-          path: "requests",
-          component: () => import("../components/User/RequestsPage.vue")
+          path: "admin",
+          component: () => AdminLogin
         }
       ]
     },
     {
-      path: "/sandbox",
-      component: () => import("../components/SandBoxPage.vue")
+      path: "/user",
+      component: () => import("@/views/UserView.vue"),
+      beforeEnter: () => {
+        if (!isUser()) {
+          Swal.fire("Error", "You are not logged in as a user!");
+          return { path: "/" };
+        }
+      },
+      children: [
+        {
+          path: "/user/dashboard"
+        },
+        {
+          path: "/user/attendance",
+          component: () => import("@/components/User/AttendancesPage.vue")
+        },
+        {
+          path: "/user/request",
+          component: () => import("@/components/User/RequestsPage.vue")
+        },
+        {
+          path: "/user/profile",
+          component: () => import("@/components/User/ProfilePage.vue")
+        },
+        {
+          path: "/user/calendar",
+          component: () => import("@/components/User/CalendarPage.vue")
+        }
+      ]
+    },
+    {
+      path: "/admin",
+      component: () => import("@/views/AdminView.vue"),
+      beforeEnter: () => {
+        if (!isAdmin()) {
+          Swal.fire("Error", "You are not logged in as an admin!");
+          return { path: "/" };
+        }
+      },
+      children: [
+        {
+          path: "/admin/employees",
+          component: () => import("@/components/Admin/EmployeesPage.vue")
+        },
+        {
+          path: "/admin/register",
+          component: () => import("@/components/Admin/RegisterEmployeePage.vue")
+        },
+        {
+          path: "/admin/attendances",
+          component: () => import("@/components/Admin/AttendancesPage.vue")
+        },
+        {
+          path: "/admin/dashboard",
+          component: () => import("@/components/Admin/DashboardPage.vue")
+        },
+        {
+          path: "/admin/requests",
+          component: () => import("@/components/Admin/RequestsPage.vue")
+        },
+        {
+          path: "/admin/calendar",
+          component: () => import("@/components/Admin/CalendarPage.vue")
+        }
+      ]
+    },
+    {
+      path: "/record",
+      component: () => import("@/components/TimeRecordScanner.vue")
     }
   ]
 });

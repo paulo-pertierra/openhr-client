@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useEmployeeDataStore } from "@/stores/pinia";
+import { useEmployeeDataStore } from "../../../../stores/pinia";
 const employee = useEmployeeDataStore();
 </script>
 <template>

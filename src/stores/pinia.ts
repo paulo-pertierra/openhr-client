@@ -1,6 +1,8 @@
 import { ref, reactive } from "vue";
 import { defineStore } from "pinia";
 import router from "@/router";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 export const useUserStore = defineStore(
   "user",
@@ -33,11 +35,30 @@ export const useEmployeeDataStore = defineStore("employeeData", () => {
 
     step.value--;
   }
+  function clearCache() {
+    data.user = {
+      username: "",
+      role: ""
+    };
+    data.profile = {
+      lastName: "", // Step 0
+      firstName: "", // Step 0
+      middleName: "", // Step 0
+      suffix: "", // Step 0
+      gender: "", // Step 1
+      birthDate: "", // Step 1
+      contactNumber: "", // Step 1
+      contactEmail: "", // Step 1
+      employmentType: "", // Final Step
+      department: "", // Final Step
+      hireDate: "", // Autogen
+      supervisor: "" // Final Step
+    };
+  }
 
   const data = reactive({
     user: {
       username: "",
-      password: "",
       role: ""
     },
     profile: {
@@ -55,7 +76,21 @@ export const useEmployeeDataStore = defineStore("employeeData", () => {
       supervisor: "" // Final Step
     }
   });
-  return { data, step, goBack, nextStep };
+  function editEmployee(userId) {
+    axios
+      .put(`/users/${userId}`, () => data)
+      .then(() => {
+        console.log(data);
+
+        Swal.fire("Success!", "Employee successfully edited.", "success");
+        clearCache();
+      })
+      .catch(() => {
+        console.log(data);
+        Swal.fire("Error", "Something went wrong.", "error");
+      });
+  }
+  return { data, step, goBack, nextStep, clearCache, editEmployee };
 });
 
 export const useEmployeeTableSorterStore = defineStore("employeeTableSorter", () => {

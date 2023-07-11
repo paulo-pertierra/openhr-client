@@ -2,9 +2,6 @@
 import { onMounted } from "vue";
 import { initFlowbite } from "flowbite";
 import AttendanceTable from "./ViewEmployeeAttendance/AttendanceTable.vue";
-onMounted(() => {
-  initFlowbite();
-});
 const props = defineProps(["userId"]);
 </script>
 

@@ -31,7 +31,7 @@ function sortAlgo(sort: string, order: string) {
 </script>
 <template>
   <thead
-    class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky top-0"
+    class="text-xs text-gray-700 uppercase bg-attendance dark:bg-gray-700 dark:text-gray-400 border-b-2 border-violet"
   >
     <tr>
       <th

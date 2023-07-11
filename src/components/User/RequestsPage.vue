@@ -1,25 +1,18 @@
 <script lang="ts" setup>
 import RequestsTableHeader from "./RequestsPage/RequestsTableHeader.vue";
 import RequestsTableEntry from "./RequestsPage/RequestsTableEntry.vue";
-import AddRequest from "../Admin/RequestsPage/AddRequest.vue";
-import axios from "axios";
-import { onMounted, ref } from "vue";
-import Swal from "sweetalert2";
-import { useUserStore } from "@/stores/pinia";
+import AddRequest from "../User/RequestsPage/AddRequest.vue";
+
 import { initFlowbite } from "flowbite";
-const user = useUserStore();
+import { onMounted } from "vue";
 
-const transactions = ref([]);
-axios
-  .get(`/transactions/${user.id}?profile=true`)
-  .then((res) => {
-    transactions.value = res.data;
-  })
-  .catch((err) => {
-    Swal.fire("Error. Wrong request." + err.message);
-  });
+onMounted(() => {
+  initFlowbite();
+  userScheduleStore.getUserSchedules();
+});
 
-onMounted(() => initFlowbite());
+import { useUserScheduleStore } from "@/stores/schedule";
+const userScheduleStore = useUserScheduleStore();
 </script>
 <template>
   <div class="flex my-4 justify-end">
@@ -36,9 +29,9 @@ onMounted(() => initFlowbite());
       <RequestsTableHeader />
       <tbody>
         <RequestsTableEntry
-          v-for="(transaction, index) in transactions"
+          v-for="(schedule, index) in userScheduleStore.userSchedules"
           :key="index"
-          :transaction="transaction"
+          :schedule="schedule"
         />
       </tbody>
     </table>

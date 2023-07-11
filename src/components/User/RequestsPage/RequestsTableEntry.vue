@@ -1,25 +1,25 @@
 <script lang="ts" setup>
-import moment from "moment";
-moment.updateLocale(moment.locale(), { invalidDate: "No Date Specified" });
-const props = defineProps(["transaction"]);
+import { formatISOToReadable } from "@/utilities/time";
+import { formatScheduleTypeToReadable } from "@/utilities/schedule";
+
+const props = defineProps(["schedule"]);
 </script>
 <template>
   <tr
     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
   >
     <td class="px-6 py-4">
-      <span class="text-xs">{{ moment(props.transaction.createdAt).calendar() }}</span> <br />
-      <span class="font-bold">{{ props.transaction.transactionType }}</span>
+      <span class="text-xs">{{
+        formatScheduleTypeToReadable(props.schedule.scheduleType) + " | " + props.schedule.title
+      }}</span>
+      <br />
+      <span class="font-bold">{{ props.schedule.transactionType }}</span>
     </td>
     <td class="px-6 py-4 overflow-auto">
-      {{ props.transaction.description }}
+      {{ props.schedule.description }}
     </td>
-    <td class="px-6 py-4">
-      {{ moment(props.transaction.startDate).format("LLL") }}
-    </td>
-    <td class="px-6 py-4">
-      {{ moment(props.transaction.endDate).format("LLL") }}
-    </td>
-    <td class="px-6 py-4">{{ props.transaction.status }}</td>
+    <td class="px-6 py-4">{{ formatISOToReadable(props.schedule.start, "PPp") }}</td>
+    <td class="px-6 py-4">{{ formatISOToReadable(props.schedule.end, "PPp") }}</td>
+    <td class="px-6 py-4">{{ props.schedule.status }}</td>
   </tr>
 </template>

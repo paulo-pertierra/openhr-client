@@ -1,19 +1,14 @@
 <script lang="ts" setup>
 import RequestsTableHeader from "./RequestsPage/RequestsTableHeader.vue";
 import RequestsTableEntry from "./RequestsPage/RequestsTableEntry.vue";
-import axios from "axios";
-import { ref } from "vue";
-import Swal from "sweetalert2";
 
-const transactions = ref([]);
-axios
-  .get("/transactions?profile=true")
-  .then((res) => {
-    transactions.value = res.data;
-  })
-  .catch((err) => {
-    Swal.fire("Error. Wrong request." + err.message);
-  });
+import { useScheduleStore } from "@/stores/schedule";
+import { onMounted } from "vue";
+const scheduleStore = useScheduleStore();
+
+onMounted(() => {
+  scheduleStore.getSchedules();
+});
 </script>
 <template>
   <div class="relative overflow-x-auto shadow-md sm:rounded-lg max-h-168">
@@ -21,9 +16,9 @@ axios
       <RequestsTableHeader />
       <tbody class="z-0">
         <RequestsTableEntry
-          v-for="(transaction, index) in transactions"
+          v-for="(schedule, index) in scheduleStore.schedules"
           :key="index"
-          :transaction="transaction"
+          :schedule="schedule"
         />
       </tbody>
     </table>

@@ -1,27 +1,19 @@
 <template>
-  <div class="border w-full shadow-lg h-60 rounded-lg bg-white">
-    <h1 class="text-2xl py-3 h-20 px-4 bg-indigo-700 text-white rounded-t-lg">Attendances</h1>
-    <div class="overflow-auto h-40">
-      <div class="p-4 inline-flex w-full justify-between cursor-pointer">
-        <p class="hover:text-indigo-950">Pertierra, Paulo Roman H.</p>
-        <p class="text-green-500">20 minutes early</p>
-      </div>
-      <div class="p-4 inline-flex w-full justify-between">
-        <p>Pertierra, Paulo Roman H.</p>
-        <p class="text-green-500">On time</p>
-      </div>
-      <div class="p-4 inline-flex w-full justify-between">
-        <p>Pertierra, Paulo Roman H.</p>
-        <p class="text-orange-500">5 minutes late</p>
-      </div>
-      <div class="p-4 inline-flex w-full justify-between">
-        <p>Pertierra, Paulo Roman H.</p>
-        <p class="text-red-500">Absent</p>
-      </div>
-      <div class="p-4 inline-flex w-full justify-between">
-        <p>Pertierra, Paulo Roman H.</p>
-        <p class="text-green-500">20 minutes early</p>
-      </div>
+  <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+    <div>
+      <a href="/admin/dashboard-employee">
+        <img class="h-auto max-w-full rounded-lg" src="/src/assets/1.png" alt="" />
+      </a>
+    </div>
+    <div>
+      <a href="/admin/dashboard-intern">
+        <img class="h-auto max-w-full rounded-lg" src="/src/assets/2.png" alt="" />
+      </a>
+    </div>
+    <div>
+      <a href="/admin/dashboard-leave">
+        <img class="h-auto max-w-full rounded-lg" src="/src/assets/3.png" alt="" />
+      </a>
     </div>
   </div>
 </template>
