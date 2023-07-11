@@ -11,8 +11,8 @@ onMounted(() => {
   userScheduleStore.getUserSchedules();
 });
 
-import { useUserScheduleSTore } from "@/stores/schedule";
-const userScheduleStore = useUserScheduleSTore();
+import { useUserScheduleStore } from "@/stores/schedule";
+const userScheduleStore = useUserScheduleStore();
 </script>
 <template>
   <div class="flex my-4 justify-end">

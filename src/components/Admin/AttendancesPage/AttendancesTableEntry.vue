@@ -2,15 +2,7 @@
 import { ref } from "vue";
 import * as fns from "date-fns";
 const props = defineProps(["attendance"]);
-
-function formatDateTime(raw: string) {
-  try {
-    const date = new Date(raw);
-    return raw === null ? "No Data" : fns.format(date, "p");
-  } catch {
-    return "No Data";
-  }
-}
+import { formatISOToReadable } from '@/utilities/time'
 </script>
 <template>
   <tr>
@@ -23,19 +15,19 @@ function formatDateTime(raw: string) {
       {{ props.attendance.user.workDepartment }}
     </td>
     <td class="px-6 py-4">
-      {{ fns.format(new Date(props.attendance.date), "PP") }}
+      {{ formatISOToReadable(props.attendance.date, 'yyyy MMMM dd') }}
     </td>
     <td class="px-6 py-4">
-      {{ formatDateTime(props.attendance.timeInAm) }}
+      {{ formatISOToReadable(props.attendance.timeInAm, 'p') }}
     </td>
     <td class="px-6 py-4">
-      {{ formatDateTime(props.attendance.timeOutAm) }}
+      {{ formatISOToReadable(props.attendance.timeOutAm, 'p') }}
     </td>
     <td class="px-6 py-4">
-      {{ formatDateTime(props.attendance.timeInPm) }}
+      {{ formatISOToReadable(props.attendance.timeInPm, 'p') }}
     </td>
     <td class="px-6 py-4">
-      {{ formatDateTime(props.attendance.timeOutPm) }}
+      {{ formatISOToReadable(props.attendance.timeOutPm, 'p') }}
     </td>
     <td class="px-6 py-4">
       <span>{{ props.attendance.hoursWorkedAm }}</span>

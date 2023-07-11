@@ -9,7 +9,7 @@ import { useCredentialsStore } from "@/stores/auth";
 const credentials = useCredentialsStore();
 const user = credentials.auth.info;
 
-const name = user.profile.lastName + " " + user.profile.firstName;
+const name = user.profile.lastName + ", " + user.profile.firstName;
 const role = user.profile.employmentType + " " + user.profile.workRole;
 
 // initialize components based on data attribute selectors
@@ -30,22 +30,24 @@ onMounted(() => {
     class="fixed w-64 top-0 left-0 z-40 h-screen transition-transform -translate-x-full border-gray-200 bg-violet sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
     aria-label="Sidebar"
   >
-    <img src="/blinc-logo.png" alt="logo" class="mx-auto h-15 w-40 pt-8 pb-24" :draggable="false" />
+    <img src="/blinc-logo.png" alt="logo" class="mx-auto h-15 w-40 pt-8 pb-8" :draggable="false" />
     <div
-      class="block w-2/3 mx-auto bg-csv border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+      class="flex items-center justify-center w-2/3 mx-auto bg-csv border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 p-2"
     >
-      <p class="text-sm text-center text-white dark:text-white" role="none">
+<div>
+  <p class="text-sm text-center text-white dark:text-white" role="none">
         {{ name }}
       </p>
-      <hr class="w-2/3 mx-auto bg-gray-700 border-[1.5] dark:bg-gray-700" />
+      <hr class="w-2/3 mx-auto bg-gray-700 border-[1.5] dark:bg-gray-700 my-1" />
       <p
-        class="pb-2 text-sm font-medium text-center text-white truncate dark:text-gray-300"
+        class="text-sm font-medium text-center text-white truncate dark:text-gray-300"
         role="none"
       >
         {{ role }}
       </p>
+</div>
     </div>
-    <div class="h-full px-3 pb-4 overflow-y-auto bg-violet dark:bg-gray-800">
+    <div class="h-full px-3 my-12 overflow-y-auto bg-violet dark:bg-gray-800">
       <ul class="space-y-2 font-medium">
         <li>
           <RouterLink
@@ -73,6 +75,13 @@ onMounted(() => {
             <img src="/calendar.svg" class="pr-3" alt="" />
             My Calendar
           </a>
+        </li>
+        <li>
+          <RouterLink to="/user/profile"
+            class="flex items-center p-2 text-white border-pink-300 text-s hover:bg-gradient-to-l from-grad hover:border-r-8">
+            <img src="/profile.svg" class="pr-3" alt="">
+            Profile
+          </RouterLink>
         </li>
       </ul>
       <ul class="bottom-10 space-y-2 font-medium mt-20">

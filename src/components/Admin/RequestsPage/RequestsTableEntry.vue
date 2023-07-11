@@ -1,8 +1,4 @@
 <script lang="ts" setup>
-import moment from "moment";
-import axios from "axios";
-import Swal from "sweetalert2";
-import router from "@/router";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faCircleXmark, faCircleCheck, faRotateLeft } from "@fortawesome/free-solid-svg-icons";
@@ -11,6 +7,7 @@ library.add(faCircleXmark, faCircleCheck, faRotateLeft);
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 const props = defineProps(["schedule"]);
+
 </script>
 
 <template>

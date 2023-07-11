@@ -2,7 +2,7 @@ import { useCredentialsStore } from "@/stores/auth";
 import axios from "axios";
 import { defineStore } from "pinia";
 import Swal from "sweetalert2";
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 
 export const useScheduleStore = defineStore("schedules", () => {
   const schedules = ref([]);
@@ -21,15 +21,36 @@ export const useScheduleStore = defineStore("schedules", () => {
   return { getSchedules, schedules };
 });
 
-export const useUserScheduleSTore = defineStore("userSchedules", () => {
+export const useUserScheduleStore = defineStore("userSchedules", () => {
   const credentials = useCredentialsStore();
   const userSchedules = ref([]);
 
   function getUserSchedules() {
-    axios.get("/schedules/user" + credentials.auth.info.uuid).then((res) => {
+    axios.get("/schedules/user/" + credentials.auth.info.uuid).then((res) => {
       userSchedules.value = res.data.data;
     });
   }
 
-  return { getUserSchedules, userSchedules };
+  const newUserSchedule = reactive({
+    title: "",
+    description: "",
+    scheduleType: "",
+    start: "",
+    end: "",
+    allDay: false
+  })
+
+  function createUserSchedule() {
+    axios
+      .post(`/schedules/${credentials.auth.info.uuid}`, newUserSchedule)
+      .then(() => {
+        Swal.fire("Success", "New request uploaded.", "success")
+      })
+      .catch((error) => {
+        Swal.fire("Failed", "Could not upload. Please complete all the fields.", "error")
+        console.error(error)
+      })
+  }
+
+  return { getUserSchedules, userSchedules, newUserSchedule, createUserSchedule };
 });

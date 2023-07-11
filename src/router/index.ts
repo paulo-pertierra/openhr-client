@@ -57,6 +57,10 @@ const router = createRouter({
         {
           path: "/user/request",
           component: () => import("@/components/User/RequestsPage.vue")
+        },
+        {
+          path: "/user/profile",
+          component: () => import('@/components/User/ProfilePage.vue')
         }
       ]
     },
