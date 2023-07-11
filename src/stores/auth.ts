@@ -16,7 +16,9 @@ export const useCredentialsStore = defineStore(
           email: "",
           lastName: "",
           firstName: "",
-          middleName: ""
+          middleName: "",
+          employmentType: "",
+          workRole: ""
         }
       }
     });

@@ -49,6 +49,14 @@ const router = createRouter({
       children: [
         {
           path: "/user/dashboard"
+        },
+        {
+          path: "/user/attendance",
+          component: () => import("@/components/User/AttendancesPage.vue")
+        },
+        {
+          path: "/user/request",
+          component: () => import("@/components/User/RequestsPage.vue")
         }
       ]
     },

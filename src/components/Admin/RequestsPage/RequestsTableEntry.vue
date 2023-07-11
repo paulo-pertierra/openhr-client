@@ -10,7 +10,7 @@ library.add(faCircleXmark, faCircleCheck, faRotateLeft);
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-const props = defineProps(['schedule'])
+const props = defineProps(["schedule"]);
 </script>
 
 <template>
@@ -20,7 +20,11 @@ const props = defineProps(['schedule'])
     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
       {{ props.schedule.user.lastName }}
       {{ props.schedule.user.firstName }}
-      {{ props.schedule.user.middleName ? (props.schedule.user.middleName as string).charAt(0) + "." : "" }}
+      {{
+        props.schedule.user.middleName
+          ? (props.schedule.user.middleName as string).charAt(0) + "."
+          : ""
+      }}
     </th>
     <td class="px-6 py-4">
       <span class="font-bold">{{ props.schedule.scheduleType }}</span> <br />
@@ -34,12 +38,10 @@ const props = defineProps(['schedule'])
       {{ props.schedule.start }}
     </td>
     <td class="px-6 py-4">
-      {{ props.schedule.end || 'No Info' }}
+      {{ props.schedule.end || "No Info" }}
     </td>
     <td class="px-6 py-4">
-      <span v-if="'Approved'" class="text-blue-500 font-bold"
-        >{{ props.schedule.status }}</span
-      >
+      <span v-if="'Approved'" class="text-blue-500 font-bold">{{ props.schedule.status }}</span>
     </td>
     <td class="pr-4 text-right">
       <div v-if="'Pending'">

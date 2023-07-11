@@ -32,11 +32,11 @@ function downloadEmployeesToCsv(content, contentType) {
 import { onMounted, ref } from "vue";
 onMounted(() => {
   userStore.getManyUsers();
-})
+});
 
-const field = ref('lastName')
-const value = ref('')
-const order = ref('desc')
+const field = ref("lastName");
+const value = ref("");
+const order = ref("desc");
 </script>
 
 <template>
@@ -45,19 +45,24 @@ const order = ref('desc')
     <div class="flex justify-between">
       <div>
         <button
-          class="text-xs bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-2 rounded-l-lg border-solid border-white-500 border-2">
+          class="text-xs bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-2 rounded-l-lg border-solid border-white-500 border-2"
+        >
           COPY
         </button>
-        <button @click="downloadEmployeesToCsv(arrayToCsv(userStore.state.users), 'text/csv')"
-          class="text-xs bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-2 border-solid border-white-500 border-2">
+        <button
+          @click="downloadEmployeesToCsv(arrayToCsv(userStore.state.users), 'text/csv')"
+          class="text-xs bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-2 border-solid border-white-500 border-2"
+        >
           CSV
         </button>
         <button
-          class="text-xs bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-2 border-solid border-white-500 border-2">
+          class="text-xs bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-2 border-solid border-white-500 border-2"
+        >
           PDF
         </button>
         <button
-          class="text-xs bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-2 rounded-r-lg border-solid border-white-500 border-2">
+          class="text-xs bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-2 rounded-r-lg border-solid border-white-500 border-2"
+        >
           PRINT
         </button>
       </div>
@@ -72,7 +77,7 @@ const order = ref('desc')
   </div>
   <div class="w-full">
     <div class="grid grid-cols-2">
-      <div class="bg-blue-500 rounded-lg p-1.5 w-fit font-bold "> 
+      <div class="bg-blue-500 rounded-lg p-1.5 w-fit font-bold">
         <span class="text-white rounded-lg">Filter By:</span>
         <select name="" id="" class="rounded-lg h-10 text-black font-normal" v-model="field">
           <option value="username">Username</option>
@@ -83,8 +88,13 @@ const order = ref('desc')
           <option value="workDepartment">Work Department</option>
           <option value="employmentType">Employment Type</option>
         </select>
-        <input type="text" class="h-10 rounded-lg mx-2" v-model="value">
-        <button class="border-2 border-black text-black bg-white " @click="userStore.getfilteredManyUsers(field, value)">Filter</button>
+        <input type="text" class="h-10 rounded-lg mx-2" v-model="value" />
+        <button
+          class="border-2 border-black text-black bg-white"
+          @click="userStore.getfilteredManyUsers(field, value)"
+        >
+          Filter
+        </button>
       </div>
       <div>
         <span class="text-white rounded-lg">Sort By:</span>
@@ -101,7 +111,12 @@ const order = ref('desc')
           <option value="desc">Descending</option>
           <option value="asc">Ascending</option>
         </select>
-        <button class="border-2 border-black text-black bg-white " @click="userStore.getSortedManyUsersBy(field, order)">Sort</button>
+        <button
+          class="border-2 border-black text-black bg-white"
+          @click="userStore.getSortedManyUsersBy(field, order)"
+        >
+          Sort
+        </button>
       </div>
     </div>
   </div>

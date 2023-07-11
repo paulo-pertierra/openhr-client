@@ -77,7 +77,6 @@ const eventStore = useEventStore();
           >
             Submit
           </button>
-          {{ eventStore.newEvent }}
         </div>
       </div>
     </div>

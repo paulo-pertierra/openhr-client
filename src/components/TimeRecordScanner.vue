@@ -18,19 +18,32 @@ function onDecode(scannedString: string) {
     return;
   }
 
-  axios.post(`/times/${scannedString}`).then((res) => {
-    if (res.status === 200) {
+  axios
+    .post(`/times/${scannedString}`)
+    .then((res) => {
+      if (res.status === 200) {
+        Swal.fire({
+          icon: "success",
+          title: "Success!",
+          text: "You timed in successfully. Don't forget to time out!",
+          timer: 1500,
+          showCancelButton: false,
+          showConfirmButton: false
+        });
+        return;
+      }
+    })
+    .catch((error) => {
+      Swal.fire("Error recording your time.", error.response.data.data.error, "warning");
       Swal.fire({
-        icon: "success",
-        title: "Success!",
-        text: "You timed in successfully. Don't forget to time out!",
+        icon: "warning",
+        title: "Error recording your time",
+        text: error.response.data.data.error,
         timer: 1500,
         showCancelButton: false,
         showConfirmButton: false
       });
-      return;
-    }
-  });
+    });
 }
 </script>
 

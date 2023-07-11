@@ -41,6 +41,6 @@ axios.interceptors.response.use(
       credentials.logOut();
       Swal.fire("Expired Token.", "You've been logged out", "warning");
     }
-    return Promise.reject(error)
+    return Promise.reject(error);
   }
 );

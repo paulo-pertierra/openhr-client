@@ -8,7 +8,7 @@ const scheduleStore = useScheduleStore();
 
 onMounted(() => {
   scheduleStore.getSchedules();
-})
+});
 </script>
 <template>
   <div class="relative overflow-x-auto shadow-md sm:rounded-lg max-h-168">

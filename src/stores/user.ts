@@ -22,23 +22,20 @@ export const useUserStore = defineStore("user", () => {
     axios
       .get(`users?filterby=${filterBy}&value=${value}`)
       .then((res) => {
-        state.users = res.data.data
-      }) // Good ending, 200 OK Response Status
-      .catch(() => {
-
-      }) // Bad ending, hindi makaconnect/404
-      .finally(() => { console.log("Finally clause.")}) // Finally, kahit anong mangyari, mangyayari
+        state.users = res.data.data;
+      })
+      .catch(() => {});
   }
 
-  function getSortedManyUsersBy(field: string, order = 'desc') {
+  function getSortedManyUsersBy(field: string, order = "desc") {
     axios
       .get(`users?sortby=${field}&order=${order}`)
       .then((res) => {
-        state.users = res.data.data
+        state.users = res.data.data;
       })
       .catch((error) => {
-        console.error(error)
-      })
+        console.error(error);
+      });
   }
 
   return { state, getManyUsers, getfilteredManyUsers, getSortedManyUsersBy };

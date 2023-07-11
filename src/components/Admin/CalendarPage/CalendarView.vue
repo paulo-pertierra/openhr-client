@@ -19,10 +19,10 @@ export default {
         plugins: [dayGridPlugin, interactionPlugin, listPlugin],
         showNonCurrentDates: false,
         height: 700,
-        width: "100%",
         initialView: "dayGridMonth",
         moreLinkClick: "popover",
         dayMaxEvents: 2,
+        eventClick: this.handleDateClick,
         views: {
           dayGridMonth: { buttonText: "Grid" },
           listDay: { buttonText: "Days" },
@@ -34,10 +34,7 @@ export default {
           center: "title",
           right: "dayGridMonth,listDay,listWeek,listMonth"
         },
-        events: async function() {
-          return eventStore.events
-          
-        }
+        events: []
       }
     };
   },
@@ -47,9 +44,9 @@ export default {
     }
   },
   mounted() {
-    eventStore.getEvents();
-    let calendarApi = this.$refs.fullCalendar.getApi()
-    calendarApi.rerenderEvents()
+    axios.get("/events").then((res) => {
+      this.calendarOptions.events = res.data.data;
+    });
   }
 };
 </script>
@@ -63,6 +60,6 @@ export default {
 
 <template>
   <div>
-    <FullCalendar ref="fullCalendar" :options="calendarOptions" />
+    <FullCalendar ref="calendar" :options="calendarOptions" />
   </div>
 </template>

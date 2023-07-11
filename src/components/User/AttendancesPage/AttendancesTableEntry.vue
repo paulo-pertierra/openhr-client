@@ -1,23 +1,31 @@
 <script lang="ts" setup>
-import { ref } from "vue";
-import moment from "moment";
-moment.updateLocale(moment.locale(), { invalidDate: "No Data" });
+import * as fns from "date-fns";
 const props = defineProps(["attendance"]);
 
-const late = ref(false);
+function formatISOToReadable(dateISOString, args: string) {
+  return dateISOString ? fns.format(new Date(dateISOString), args) : "No Data";
+}
+
+function isEarly(dateString) {}
 </script>
 <template>
   <tr
     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
   >
     <td class="px-6 py-4">
-      {{ moment(props.attendance.recordDate).format("YYYY MMMM DD") }}
+      {{ formatISOToReadable(props.attendance.date, "yyyy MMMM dd") }}
     </td>
     <td class="px-6 py-4">
-      {{ moment(props.attendance.timeIn).format("hh:mm A") }}
+      {{ formatISOToReadable(props.attendance.timeInAm, "pp") }}
     </td>
     <td class="px-6 py-4">
-      {{ moment(props.attendance.timeOut).format("hh:mm A") }}
+      {{ formatISOToReadable(props.attendance.timeOutAm, "pp") }}
+    </td>
+    <td class="px-6 py-4">
+      {{ formatISOToReadable(props.attendance.timeInPm, "pp") }}
+    </td>
+    <td class="px-6 py-4">
+      {{ formatISOToReadable(props.attendance.timeOutPm, "pp") }}
     </td>
     <td class="px-6 py-4">
       <p
@@ -25,12 +33,6 @@ const late = ref(false);
         class="mx-0.5 inline bg-emerald-600 w-10 text-white p-1.5 rounded-lg text-center"
       >
         Early
-      </p>
-      <p
-        v-if="late"
-        class="mx-0.5 inline bg-orange-500 w-10 text-white p-1.5 rounded-lg text-center"
-      >
-        Late
       </p>
       <p
         v-if="false"
