@@ -34,18 +34,18 @@ onMounted(() => {
     <div
       class="flex items-center justify-center w-2/3 mx-auto bg-csv border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 p-2"
     >
-<div>
-  <p class="text-sm text-center text-white dark:text-white" role="none">
-        {{ name }}
-      </p>
-      <hr class="w-2/3 mx-auto bg-gray-700 border-[1.5] dark:bg-gray-700 my-1" />
-      <p
-        class="text-sm font-medium text-center text-white truncate dark:text-gray-300"
-        role="none"
-      >
-        {{ role }}
-      </p>
-</div>
+      <div>
+        <p class="text-sm text-center text-white dark:text-white" role="none">
+          {{ name }}
+        </p>
+        <hr class="w-2/3 mx-auto bg-gray-700 border-[1.5] dark:bg-gray-700 my-1" />
+        <p
+          class="text-sm font-medium text-center text-white truncate dark:text-gray-300"
+          role="none"
+        >
+          {{ role }}
+        </p>
+      </div>
     </div>
     <div class="h-full px-3 my-12 overflow-y-auto bg-violet dark:bg-gray-800">
       <ul class="space-y-2 font-medium">
@@ -77,9 +77,11 @@ onMounted(() => {
           </a>
         </li>
         <li>
-          <RouterLink to="/user/profile"
-            class="flex items-center p-2 text-white border-pink-300 text-s hover:bg-gradient-to-l from-grad hover:border-r-8">
-            <img src="/profile.svg" class="pr-3" alt="">
+          <RouterLink
+            to="/user/profile"
+            class="flex items-center p-2 text-white border-pink-300 text-s hover:bg-gradient-to-l from-grad hover:border-r-8"
+          >
+            <img src="/profile.svg" class="pr-3" alt="" />
             Profile
           </RouterLink>
         </li>

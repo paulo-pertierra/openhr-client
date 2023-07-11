@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import VueDatePicker from '@vuepic/vue-datepicker'
+import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
 
 import { initFlowbite } from "flowbite";
 import { onMounted } from "vue";
 onMounted(() => initFlowbite());
 
-import { useUserScheduleStore } from '@/stores/schedule';
+import { useUserScheduleStore } from "@/stores/schedule";
 const userSchedule = useUserScheduleStore();
 </script>
 <template>
@@ -39,17 +39,34 @@ const userSchedule = useUserScheduleStore();
       </div>
       <!-- Modal body -->
       <div class="p-4">
-        <div class="m-2"> 
+        <div class="m-2">
           <label class="block font-semibold" for="schedule-title">Title</label>
-        <input class="block rounded-lg w-72" type="text" name="title" id="title" v-model="userSchedule.newUserSchedule.title">
+          <input
+            class="block rounded-lg w-72"
+            type="text"
+            name="title"
+            id="title"
+            v-model="userSchedule.newUserSchedule.title"
+          />
         </div>
-        <div class="m-2"> 
+        <div class="m-2">
           <label class="block font-semibold" for="schedule-description">Description</label>
-        <input class="block rounded-lg w-72" type="text" name="description" id="description" v-model="userSchedule.newUserSchedule.description">
+          <input
+            class="block rounded-lg w-72"
+            type="text"
+            name="description"
+            id="description"
+            v-model="userSchedule.newUserSchedule.description"
+          />
         </div>
         <div class="m-2">
           <label class="block font-semibold" for="schedule-type">Request Type</label>
-          <select class="block rounded-lg w-72" name="schedule-type" id="" v-model="userSchedule.newUserSchedule.scheduleType">
+          <select
+            class="block rounded-lg w-72"
+            name="schedule-type"
+            id=""
+            v-model="userSchedule.newUserSchedule.scheduleType"
+          >
             <option :value="null" selected="true" disabled>Select a Request Type</option>
             <option class="font-bold" :value="null" disabled>Leaves</option>
             <option value="LvAnnual">Annual Leave</option>
@@ -78,24 +95,48 @@ const userSchedule = useUserScheduleStore();
             <option value="UNDERTIME">Undertime</option>
           </select>
         </div>
-        <hr class="mt-6 mb-3">
-        <div class="m-2"> 
+        <hr class="mt-6 mb-3" />
+        <div class="m-2">
           <label class="block font-semibold" for="schedule-description">Start Date</label>
-          <div class="block rounded-lg w-72 border-gray-500 border"><VueDatePicker v-model="userSchedule.newUserSchedule.start" /></div>
-        </div>
-        <div class="m-2"> 
-          <label class="block font-semibold" for="schedule-description">End Date</label>
-          <div class="block rounded-lg w-72 border-gray-500 border"><VueDatePicker v-model="userSchedule.newUserSchedule.end" /></div>
-        </div>
-        <div class="m-2"> 
-          <label class="block font-semibold" for="schedule-description">All Day</label>
-          <div class="flex items-center justify-evenly  w-72 rounded-lg border-gray-700 border h-10">
-            <div><input type="radio" name="allDay" v-model="userSchedule.newUserSchedule.allDay" :value="true">Yes</div>
-          <div><input type="radio" name="allDay" v-model="userSchedule.newUserSchedule.allDay" :value="false" checked>No</div>
+          <div class="block rounded-lg w-72 border-gray-500 border">
+            <VueDatePicker v-model="userSchedule.newUserSchedule.start" />
           </div>
         </div>
         <div class="m-2">
-          <button class="bg-blue-600 w-72 rounded-lg h-10 text-white font-bold hover:bg-blue-800 transition-colors" @click="userSchedule.createUserSchedule()">Create Request</button>
+          <label class="block font-semibold" for="schedule-description">End Date</label>
+          <div class="block rounded-lg w-72 border-gray-500 border">
+            <VueDatePicker v-model="userSchedule.newUserSchedule.end" />
+          </div>
+        </div>
+        <div class="m-2">
+          <label class="block font-semibold" for="schedule-description">All Day</label>
+          <div class="flex items-center justify-evenly w-72 rounded-lg border-gray-700 border h-10">
+            <div>
+              <input
+                type="radio"
+                name="allDay"
+                v-model="userSchedule.newUserSchedule.allDay"
+                :value="true"
+              />Yes
+            </div>
+            <div>
+              <input
+                type="radio"
+                name="allDay"
+                v-model="userSchedule.newUserSchedule.allDay"
+                :value="false"
+                checked
+              />No
+            </div>
+          </div>
+        </div>
+        <div class="m-2">
+          <button
+            class="bg-blue-600 w-72 rounded-lg h-10 text-white font-bold hover:bg-blue-800 transition-colors"
+            @click="userSchedule.createUserSchedule()"
+          >
+            Create Request
+          </button>
         </div>
       </div>
       <!-- Modal footer -->

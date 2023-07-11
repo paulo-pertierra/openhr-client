@@ -1,21 +1,25 @@
 <script lang="ts" setup>
-
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faCircleXmark, faCircleCheck, faRotateLeft } from "@fortawesome/free-solid-svg-icons";
 library.add(faCircleXmark, faCircleCheck, faRotateLeft);
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-const props = defineProps(["schedule"]);
+import { formatISOToReadable } from "@/utilities/time";
 
+const props = defineProps(["schedule"]);
 </script>
 
 <template>
   <tr
     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
   >
-    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-      {{ props.schedule.user.lastName }}
+    <th
+      scope="row"
+      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+      v-if="props.schedule.user"
+    >
+      {{ props.schedule.user.lastName === null ? "" : props.schedule.user.lastName }}
       {{ props.schedule.user.firstName }}
       {{
         props.schedule.user.middleName
@@ -23,19 +27,26 @@ const props = defineProps(["schedule"]);
           : ""
       }}
     </th>
+    <th
+      scope="row"
+      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+      v-else
+    >
+      Unknown/Deleted User
+    </th>
     <td class="px-6 py-4">
       <span class="font-bold">{{ props.schedule.scheduleType }}</span> <br />
-      <span class="text-xs">{{ props.schedule.createdAt }}</span>
+      <span class="text-xs">{{ formatISOToReadable(props.schedule.createdAt, "PPp") }}</span>
     </td>
     <td class="px-6 py-4 overflow-auto">
       <span class="font-bold">{{ props.schedule.title }}</span> <br />
       {{ props.schedule.description }}
     </td>
     <td class="px-6 py-4">
-      {{ props.schedule.start }}
+      {{ formatISOToReadable(props.schedule.start, "Pp") }}
     </td>
     <td class="px-6 py-4">
-      {{ props.schedule.end || "No Info" }}
+      {{ formatISOToReadable(props.schedule.end, "Pp") }}
     </td>
     <td class="px-6 py-4">
       <span v-if="'Approved'" class="text-blue-500 font-bold">{{ props.schedule.status }}</span>

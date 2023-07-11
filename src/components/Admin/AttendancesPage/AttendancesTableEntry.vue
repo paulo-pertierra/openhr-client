@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import * as fns from "date-fns";
 const props = defineProps(["attendance"]);
-import { formatISOToReadable } from '@/utilities/time'
+import { formatISOToReadable } from "@/utilities/time";
 </script>
 <template>
   <tr>
@@ -15,19 +15,19 @@ import { formatISOToReadable } from '@/utilities/time'
       {{ props.attendance.user.workDepartment }}
     </td>
     <td class="px-6 py-4">
-      {{ formatISOToReadable(props.attendance.date, 'yyyy MMMM dd') }}
+      {{ formatISOToReadable(props.attendance.date, "yyyy MMMM dd") }}
     </td>
     <td class="px-6 py-4">
-      {{ formatISOToReadable(props.attendance.timeInAm, 'p') }}
+      {{ formatISOToReadable(props.attendance.timeInAm, "p") }}
     </td>
     <td class="px-6 py-4">
-      {{ formatISOToReadable(props.attendance.timeOutAm, 'p') }}
+      {{ formatISOToReadable(props.attendance.timeOutAm, "p") }}
     </td>
     <td class="px-6 py-4">
-      {{ formatISOToReadable(props.attendance.timeInPm, 'p') }}
+      {{ formatISOToReadable(props.attendance.timeInPm, "p") }}
     </td>
     <td class="px-6 py-4">
-      {{ formatISOToReadable(props.attendance.timeOutPm, 'p') }}
+      {{ formatISOToReadable(props.attendance.timeOutPm, "p") }}
     </td>
     <td class="px-6 py-4">
       <span>{{ props.attendance.hoursWorkedAm }}</span>

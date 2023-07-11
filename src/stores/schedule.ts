@@ -38,18 +38,18 @@ export const useUserScheduleStore = defineStore("userSchedules", () => {
     start: "",
     end: "",
     allDay: false
-  })
+  });
 
   function createUserSchedule() {
     axios
       .post(`/schedules/${credentials.auth.info.uuid}`, newUserSchedule)
       .then(() => {
-        Swal.fire("Success", "New request uploaded.", "success")
+        Swal.fire("Success", "New request uploaded.", "success");
       })
       .catch((error) => {
-        Swal.fire("Failed", "Could not upload. Please complete all the fields.", "error")
-        console.error(error)
-      })
+        Swal.fire("Failed", "Could not upload. Please complete all the fields.", "error");
+        console.error(error);
+      });
   }
 
   return { getUserSchedules, userSchedules, newUserSchedule, createUserSchedule };

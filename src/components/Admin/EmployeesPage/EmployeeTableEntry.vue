@@ -25,9 +25,9 @@ onMounted(() => {
   >
     <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
       <RouterLink :to="'/admin/employees/' + props.user.uuid">
-        {{ props.user.lastName }},
+        {{ props.user.lastName || "" }},
         {{ props.user.firstName }}
-        {{ (props.user.middleName as string) || "" }}
+        {{ (props.user.middleName as string).charAt(0) + "." || "" }}
       </RouterLink>
     </th>
     <td class="px-6 py-4">

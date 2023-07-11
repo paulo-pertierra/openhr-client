@@ -50,7 +50,7 @@ const order = ref("desc");
           COPY
         </button>
         <button
-          @click="downloadEmployeesToCsv(arrayToCsv(userStore.state.users), 'text/csv')"
+          @click="downloadEmployeesToCsv(arrayToCsv(userStore.users), 'text/csv')"
           class="text-xs bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-2 border-solid border-white-500 border-2"
         >
           CSV
@@ -124,7 +124,7 @@ const order = ref("desc");
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 overflow-auto">
       <TableHead />
       <tbody>
-        <TableEntry v-for="(user, index) in userStore.state.users" :key="index" :user="user" />
+        <TableEntry v-for="(user, index) in userStore.users" :key="index" :user="user" />
       </tbody>
     </table>
   </div>

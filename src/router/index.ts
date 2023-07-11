@@ -60,7 +60,11 @@ const router = createRouter({
         },
         {
           path: "/user/profile",
-          component: () => import('@/components/User/ProfilePage.vue')
+          component: () => import("@/components/User/ProfilePage.vue")
+        },
+        {
+          path: "/user/calendar",
+          component: () => import("@/components/User/CalendarPage.vue")
         }
       ]
     },

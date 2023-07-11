@@ -1,17 +1,15 @@
 import { defineStore } from "pinia";
 import axios from "axios";
-import { reactive } from "vue";
+import { ref } from "vue";
 
 export const useUserStore = defineStore("user", () => {
-  const state = reactive({
-    users: []
-  });
+  const users = ref([]);
 
   function getManyUsers() {
     axios
       .get("users")
       .then((res) => {
-        state.users = res.data.data;
+        users.value = res.data.data;
       })
       .catch((error) => {
         console.error(error);
@@ -22,7 +20,7 @@ export const useUserStore = defineStore("user", () => {
     axios
       .get(`users?filterby=${filterBy}&value=${value}`)
       .then((res) => {
-        state.users = res.data.data;
+        users.value = res.data.data;
       })
       .catch(() => {});
   }
@@ -31,12 +29,12 @@ export const useUserStore = defineStore("user", () => {
     axios
       .get(`users?sortby=${field}&order=${order}`)
       .then((res) => {
-        state.users = res.data.data;
+        users.value = res.data.data;
       })
       .catch((error) => {
         console.error(error);
       });
   }
 
-  return { state, getManyUsers, getfilteredManyUsers, getSortedManyUsersBy };
+  return { users, getManyUsers, getfilteredManyUsers, getSortedManyUsersBy };
 });

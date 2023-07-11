@@ -8,17 +8,17 @@ onMounted(() => {
   initFlowbite();
 });
 
-import { formatISOToReadable } from '@/utilities/time'
+import { formatISOToReadable } from "@/utilities/time";
 </script>
 <template>
   <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
       {{ fns.format(new Date(props.attendance.date), "PP") }}
     </th>
-    <td class="px-6 py-4">{{ formatISOToReadable(props.attendance.timeInAm, 'p') }}</td>
-    <td class="px-6 py-4">{{ formatISOToReadable(props.attendance.timeOutAm, 'p') }}</td>
-    <td class="px-6 py-4">{{ formatISOToReadable(props.attendance.timeInPm, 'p') }}</td>
-    <td class="px-6 py-4">{{ formatISOToReadable(props.attendance.timeOutPm, 'p') }}</td>
+    <td class="px-6 py-4">{{ formatISOToReadable(props.attendance.timeInAm, "p") }}</td>
+    <td class="px-6 py-4">{{ formatISOToReadable(props.attendance.timeOutAm, "p") }}</td>
+    <td class="px-6 py-4">{{ formatISOToReadable(props.attendance.timeInPm, "p") }}</td>
+    <td class="px-6 py-4">{{ formatISOToReadable(props.attendance.timeOutPm, "p") }}</td>
     <td class="px-6 py-4">
       AM: {{ props.attendance.hoursWorkedAm }} | PM: {{ props.attendance.hoursWorkedPm }}
     </td>
