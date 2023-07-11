@@ -2,6 +2,9 @@
 import { nationalities } from "../employeefields";
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
+
+import { useNewUserStore } from "@/stores/user";
+const newUserStore = useNewUserStore();
 </script>
 
 <template>
@@ -11,29 +14,29 @@ import "@vuepic/vue-datepicker/dist/main.css";
     <div class="col-span-1 lg:col-span-3 my-4 font-semibold">Identification</div>
     <div>
       <label class="block" for="last-name">Last Name</label>
-      <input class="block h-8 rounded-lg" type="text" />
+      <input class="block h-8 rounded-lg" type="text" v-model="newUserStore.newUser.lastName" />
     </div>
     <div>
       <label class="block" for="first-name">First Name</label>
-      <input class="block h-8 rounded-lg" type="text" />
+      <input class="block h-8 rounded-lg" type="text" v-model="newUserStore.newUser.firstName" />
     </div>
     <div>
       <label class="block" for="middle-name">Middle Name</label>
-      <input class="block h-8 rounded-lg" type="text" />
+      <input class="block h-8 rounded-lg" type="text" v-model="newUserStore.newUser.middleName" />
     </div>
     <div>
       <label class="block" for="contact-email">Email Address</label>
-      <input class="block h-8 rounded-lg" type="email" />
+      <input class="block h-8 rounded-lg" type="email" v-model="newUserStore.newUser.contactEmail" />
     </div>
     <div>
       <label class="block" for="contact-phone">Phone Number</label>
-      <input class="block h-8 rounded-lg" type="text" />
+      <input class="block h-8 rounded-lg" type="text" v-model="newUserStore.newUser.contactNumber" />
     </div>
     <div class="col-span-1 lg:col-span-3 my-4 font-semibold">Personal Information</div>
     <div>
       <label class="block" for="gender">Gender</label>
-      <select class="block h-10 rounded-lg w-52" name="gender" id="gender">
-        <option :value="null" selected disabled>Select gender</option>
+      <select class="block h-10 rounded-lg w-52" name="gender" id="gender" v-model="newUserStore.newUser.profileGender" >
+        <option :value="null" selected disabled>Select gender</option> 
         <option value="Male">Male</option>
         <option value="Female">Female</option>
         <option value="PreferNotToSay">Prefer not to Say</option>
@@ -42,12 +45,12 @@ import "@vuepic/vue-datepicker/dist/main.css";
     <div>
       <label class="block" for="birthday">Birthday</label>
       <div class="block border border-gray-600 rounded-lg w-52">
-        <VueDatePicker />
+        <VueDatePicker v-model="newUserStore.newUser.profileBirthday" />
       </div>
     </div>
     <div>
       <label class="block" for="civil-status">Civil Status</label>
-      <select class="block h-10 rounded-lg w-52" name="civil-status" id="civil-status">
+      <select class="block h-10 rounded-lg w-52" name="civil-status" id="civil-status" v-model="newUserStore.newUser.profileCivilStatus" >
         <option :value="null" selected disabled>Select civil status</option>
         <option value="Single">Single</option>
         <option value="Married">Married</option>
@@ -58,8 +61,8 @@ import "@vuepic/vue-datepicker/dist/main.css";
       </select>
     </div>
     <div>
-      <label class="block" for="civil-status">Nationality</label>
-      <select class="block h-10 rounded-lg w-52" name="civil-status" id="civil-status">
+      <label class="block" for="nationality">Nationality</label>
+      <select class="block h-10 rounded-lg w-52" name="nationality" id="nationality" v-model="newUserStore.newUser.profileNationality" >
         <option :value="null" selected disabled>Select nationality</option>
         <option v-for="(nationality, index) in nationalities" :key="index" :value="nationality">
           {{ nationality }}
@@ -68,7 +71,7 @@ import "@vuepic/vue-datepicker/dist/main.css";
     </div>
     <div>
       <label class="block" for="address">Address</label>
-      <input class="block h-8 rounded-lg" type="text" />
+      <input class="block h-8 rounded-lg" type="text" v-model="newUserStore.newUser.profileAddress" />
     </div>
   </div>
 </template>

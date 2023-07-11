@@ -8,6 +8,9 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { formatISOToReadable } from "@/utilities/time";
 
 const props = defineProps(["schedule"]);
+
+import { useScheduleStore } from "@/stores/schedule";
+const scheduleStore = useScheduleStore();
 </script>
 
 <template>
@@ -52,14 +55,14 @@ const props = defineProps(["schedule"]);
       <span v-if="'Approved'" class="text-blue-500 font-bold">{{ props.schedule.status }}</span>
     </td>
     <td class="pr-4 text-right">
-      <div v-if="'Pending'">
-        <button @click="() => {}">
+      <div v-if="props.schedule.status === 'Pending'">
+        <button @click="scheduleStore.answerScheduleById(props.schedule.id, 'Approved')">
           <FontAwesomeIcon
             class="px-1 w-6 h-auto text-green-600 hover:text-green-800 transition-all duration-150 ease-in-out"
             icon="fa-solid fa-circle-check"
           />
         </button>
-        <button @click="() => {}" href="#">
+        <button @click="scheduleStore.answerScheduleById(props.schedule.id, 'Declined')" href="#">
           <FontAwesomeIcon
             class="w-6 h-auto text-red-600 hover:text-red-800 transition-all duration-150 ease-in-out"
             icon="fa-solid fa-circle-xmark"
@@ -67,7 +70,7 @@ const props = defineProps(["schedule"]);
         </button>
       </div>
       <div v-else>
-        <button @click="() => {}" href="#">
+        <button @click="scheduleStore.answerScheduleById(props.schedule.id, 'Pending')" href="#">
           <FontAwesomeIcon
             class="px-4 w-6 h-auto text-orange-500 hover:text-orange-400 transition-all duration-150 ease-in-out"
             icon="fa-solid fa-rotate-left"

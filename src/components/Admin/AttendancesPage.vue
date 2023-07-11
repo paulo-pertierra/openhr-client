@@ -68,8 +68,8 @@ function downloadAttendanceCsv(content, contentType) {
     </div>
   </div>
 
-  <div class="relative overflow-auto shadow-md sm:rounded-lg h-144">
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+  <div class="relative overflow-auto shadow-md sm:rounded-lg max-h-144">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 bg-white">
       <AttendancesTableHead />
       <tbody>
         <AttendancesTableEntry
