@@ -2,6 +2,9 @@
 import { nationalities } from "../employeefields";
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
+
+import { useNewUserStore } from "@/stores/user";
+const newUserStore = useNewUserStore();
 </script>
 
 <template>
@@ -58,8 +61,8 @@ import "@vuepic/vue-datepicker/dist/main.css";
       </select>
     </div>
     <div>
-      <label class="block" for="civil-status">Nationality</label>
-      <select class="block h-10 rounded-lg w-52" name="civil-status" id="civil-status">
+      <label class="block" for="nationality">Nationality</label>
+      <select class="block h-10 rounded-lg w-52" name="nationality" id="nationality">
         <option :value="null" selected disabled>Select nationality</option>
         <option v-for="(nationality, index) in nationalities" :key="index" :value="nationality">
           {{ nationality }}

@@ -16,16 +16,16 @@ function isEarly(dateString) {}
       {{ formatISOToReadable(props.attendance.date, "yyyy MMMM dd") }}
     </td>
     <td class="px-6 py-4">
-      {{ formatISOToReadable(props.attendance.timeInAm, "pp") }}
+      {{ formatISOToReadable(props.attendance.timeInAm, "p") }}
     </td>
     <td class="px-6 py-4">
-      {{ formatISOToReadable(props.attendance.timeOutAm, "pp") }}
+      {{ formatISOToReadable(props.attendance.timeOutAm, "p") }}
     </td>
     <td class="px-6 py-4">
-      {{ formatISOToReadable(props.attendance.timeInPm, "pp") }}
+      {{ formatISOToReadable(props.attendance.timeInPm, "p") }}
     </td>
     <td class="px-6 py-4">
-      {{ formatISOToReadable(props.attendance.timeOutPm, "pp") }}
+      {{ formatISOToReadable(props.attendance.timeOutPm, "p") }}
     </td>
     <td class="px-6 py-4">
       <p
