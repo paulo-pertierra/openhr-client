@@ -2,6 +2,9 @@
 import Step1PersonalInfo from "./RegistrationForm/Step1PersonalInfo.vue";
 import Step2EducationInfo from "./RegistrationForm/Step2EducationInfo.vue";
 import Step3WorkInfo from "./RegistrationForm/Step3WorkInfo.vue";
+
+import { useNewUserStore } from "@/stores/user";
+const newUserStore = useNewUserStore();
 </script>
 
 <template>
@@ -110,11 +113,14 @@ import Step3WorkInfo from "./RegistrationForm/Step3WorkInfo.vue";
       <div class="flex justify-end border-t-2 py-4">
         <button
           class="bg-blue-600 text-white p-2 m-1 rounded-lg font-semibold hover:bg-blue-800 transition-colors"
+          @click="newUserStore.generateNewUserCredentials()"
         >
           Generate Credentials
         </button>
         <button
-          class="bg-blue-600 text-white p-2 m-1 rounded-lg font-semibold hover:bg-blue-800 transition-colors"
+          class="bg-blue-600 text-white p-2 m-1 rounded-lg font-semibold hover:bg-blue-800 transition-colors disabled:bg-blue-500"
+          @click="newUserStore.createNewUser()"
+          :disabled="!newUserStore.isGeneratedCredentials"
         >
           Register User
         </button>
